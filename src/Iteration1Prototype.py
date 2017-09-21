@@ -21,6 +21,7 @@ filename = sys.argv[1]
 ROSIE_HOME = os.getenv("ROSIE_HOME")
 if not ROSIE_HOME:
     print "Environment variable ROSIE_HOME not set.  (Must be set to the root of the rosie directory.)"
+
     sys.exit(-1)
 
 Rosie = rosie.initialize(ROSIE_HOME, ROSIE_HOME + "/ffi/librosie/librosie.so")
