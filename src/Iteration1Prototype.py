@@ -58,7 +58,7 @@ def print_match_results(r, of):
         print "Match failed."
 
 ##Use the basic.matchall to parse all data
-config = json.dumps( {'expression': '(basic.matchall)+'} )
+config = json.dumps( {'expression': '(basic.matchall)'} )
 r = engine.configure(config)
 number = 0
 with open(filename) as file: ## Data file need to analyize 
