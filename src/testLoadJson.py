@@ -3,7 +3,7 @@
 # 
 #  brute-force-method.py
 # 
-#  © Copyright IBM Corporation 2016, 2017.
+#  ï¿½ Copyright IBM Corporation 2016, 2017.
 #  LICENSE: MIT License (https://opensource.org/licenses/mit-license.html)
 #  AUTHOR: Jamie A. Jennings
 
@@ -21,7 +21,7 @@ filename = sys.argv[1]
 ##Use the basic.matchall to parse all data
 with open(filename) as file: ## Data file need to analyize 
     data = json.load(file)
-    data = data['basic.matchall']['subs']['subs'][0]
+    data = data['basic.matchall']['subs'][0]
 #     if 'subs' in data:1
 #     data = data['subs']
     
