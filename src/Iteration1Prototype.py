@@ -21,7 +21,6 @@ filename = sys.argv[1]
 ROSIE_HOME = os.getenv("ROSIE_HOME")
 if not ROSIE_HOME:
     print "Environment variable ROSIE_HOME not set.  (Must be set to the root of the rosie directory.)"
-
     sys.exit(-1)
 
 Rosie = rosie.initialize(ROSIE_HOME, ROSIE_HOME + "/ffi/librosie/librosie.so")
@@ -30,8 +29,7 @@ print "Rosie library successfully loaded"
 engine = Rosie.engine()
 print "Obtained a rosie matching engine:", engine, "with id", engine.id
 
-config = json.dumps( {'expression': '[:digit:]+',
-                      'encode': 'json'} )
+config = json.dumps( {'encode': 'json'} )
 r = engine.configure(config)
 if not r: print "Engine reconfigured to look for digits\n"
 else: print "Error reconfiguring engine!", r
@@ -59,7 +57,7 @@ def print_match_results(r, of):
         print "Match failed."
 
 ##Use the basic.matchall to parse all data
-config = json.dumps( {'expression': '(basic.matchall)+'} )
+config = json.dumps( {'expression': 'basic.matchall'} )
 r = engine.configure(config)
 number = 0
 with open(filename) as file: ## Data file need to analyize 
