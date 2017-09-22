@@ -18,17 +18,19 @@ import rosie
 filename = sys.argv[1]
 ############
 
+def parseLine(jsonData):
+    if 'subs' not in jsonData.values()[0]:
+        print jsonData.keys()
+    else: 
+        data = jsonData.values()[0]['subs']
+        for i in range(len(data)):
+            sub = data[i]
+            parseLine(sub)
+
 ##Use the basic.matchall to parse all data
 with open(filename) as file: ## Data file need to analyize 
     data = json.load(file)
-    data = data['basic.matchall']['subs']['subs'][0]
-#     if 'subs' in data:1
-#     data = data['subs']
-    
-    print data.keys()
-
-#     while (data != None):
-#         data = data
-            # print number            
-
-# print "A message should print below, as the program exits, indicating that engine", engine.id, "is being collected"
+    for i in range(len(data)):
+        parseLine(data[1])
+        print "line end here ----------------------------------------------"
+        print i

@@ -1,0 +1,394 @@
+{
+  "basic.matchall": {
+    "text": "9/19/2017,133,John,12:12:06 AM,10:29:47,20:08:50,63.120.101.201,caec:cec6:c4ef:bb7b:1a78:d055:216d:3a78,ed:73:91:a3:e4:c6\r\n", 
+    "subs": [
+      {
+        "basic.datetime_patterns": {
+          "text": "9/19/2017", 
+          "subs": [
+            {
+              "datetime.simple_slash_date": {
+                "text": "9/19/2017", 
+                "pos": 1
+              }
+            }
+          ], 
+          "pos": 1
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 10
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "133", 
+          "subs": [
+            {
+              "common.int": {
+                "text": "133", 
+                "pos": 11
+              }
+            }
+          ], 
+          "pos": 11
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 14
+        }
+      }, 
+      {
+        "common.word": {
+          "text": "John", 
+          "pos": 15
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 19
+        }
+      }, 
+      {
+        "basic.datetime_patterns": {
+          "text": "12:12:06 AM", 
+          "subs": [
+            {
+              "datetime.simple_time": {
+                "text": "12:12:06 AM", 
+                "pos": 20
+              }
+            }
+          ], 
+          "pos": 20
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 31
+        }
+      }, 
+      {
+        "basic.datetime_patterns": {
+          "text": "10:29:47", 
+          "subs": [
+            {
+              "datetime.simple_time": {
+                "text": "10:29:47", 
+                "pos": 32
+              }
+            }
+          ], 
+          "pos": 32
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 40
+        }
+      }, 
+      {
+        "basic.datetime_patterns": {
+          "text": "20:08:50", 
+          "subs": [
+            {
+              "datetime.simple_time": {
+                "text": "20:08:50", 
+                "pos": 41
+              }
+            }
+          ], 
+          "pos": 41
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 49
+        }
+      }, 
+      {
+        "basic.network_patterns": {
+          "text": "63.120.101.201", 
+          "subs": [
+            {
+              "network.ip_address": {
+                "text": "63.120.101.201", 
+                "pos": 50
+              }
+            }
+          ], 
+          "pos": 50
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 64
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "caec", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "caec", 
+                "pos": 65
+              }
+            }
+          ], 
+          "pos": 65
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 69
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "cec6", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "cec6", 
+                "pos": 70
+              }
+            }
+          ], 
+          "pos": 70
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 74
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "c4ef", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "c4ef", 
+                "pos": 75
+              }
+            }
+          ], 
+          "pos": 75
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 79
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "bb7b", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "bb7b", 
+                "pos": 80
+              }
+            }
+          ], 
+          "pos": 80
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 84
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "1a78", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "1a78", 
+                "pos": 85
+              }
+            }
+          ], 
+          "pos": 85
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 89
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "d055", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "d055", 
+                "pos": 90
+              }
+            }
+          ], 
+          "pos": 90
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 94
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "216d", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "216d", 
+                "pos": 95
+              }
+            }
+          ], 
+          "pos": 95
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 99
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "3a78", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "3a78", 
+                "pos": 100
+              }
+            }
+          ], 
+          "pos": 100
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ",", 
+          "pos": 104
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "ed", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "ed", 
+                "pos": 105
+              }
+            }
+          ], 
+          "pos": 105
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 107
+        }
+      }, 
+      {
+        "basic.datetime_patterns": {
+          "text": "73:91", 
+          "subs": [
+            {
+              "datetime.simple_time": {
+                "text": "73:91", 
+                "pos": 108
+              }
+            }
+          ], 
+          "pos": 108
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 113
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "a3", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "a3", 
+                "pos": 114
+              }
+            }
+          ], 
+          "pos": 114
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 116
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "e4", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "e4", 
+                "pos": 117
+              }
+            }
+          ], 
+          "pos": 117
+        }
+      }, 
+      {
+        "basic.punctuation": {
+          "text": ":", 
+          "pos": 119
+        }
+      }, 
+      {
+        "common.number": {
+          "text": "c6", 
+          "subs": [
+            {
+              "common.hex": {
+                "text": "c6", 
+                "pos": 120
+              }
+            }
+          ], 
+          "pos": 120
+        }
+      }
+    ], 
+    "pos": 1
+  }
+}

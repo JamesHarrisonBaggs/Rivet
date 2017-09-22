@@ -43,12 +43,14 @@ print "Return from inspect_engine is:", str(tbl)
 r = engine.load_manifest("$sys/MANIFEST")
 for s in r: print s
 
+list = []
+
 def print_match_results(r, of):
     match = json.loads(r[0]) if r else False
     if match:
         ## This part was modified to write output into a json file 
         ## instead of std output
-        json.dump(match, of, indent = 2) 
+        list.append(match)
         ####print "Match succeeded!" 
         ####print "Match structure is", match
         leftover = json.loads(r[1])
@@ -65,7 +67,8 @@ with open(filename) as file: ## Data file need to analyize
         for line in file:
             r = engine.match(line, None)
             print_match_results(r, of)
+#             list.append(result)
             number += 1 ## This is just keep tracking lines numbers
             # print number            
-
+        json.dump(list, of, indent = 2)
 # print "A message should print below, as the program exits, indicating that engine", engine.id, "is being collected"
