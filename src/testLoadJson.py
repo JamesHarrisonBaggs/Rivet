@@ -31,6 +31,6 @@ def parseLine(jsonData):
 with open(filename) as file: ## Data file need to analyize 
     data = json.load(file)
     for i in range(len(data)):
-        parseLine(data[1])
+        parseLine(data[i])
         print "line end here ----------------------------------------------"
         print i
