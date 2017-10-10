@@ -11,17 +11,13 @@ import rosie
 from Patterns import Patterns
 from platform import node
 
-############
-#GLOBAL VARS
-root = Patterns("Root") ## Root node of the tree structure.
-current = root ## A node cursor represents current node is on.
-############
-
 class PatternExtraction:
     
     def __init__(self, filename):
         """Save the file name given from command-line."""
         self.filename = filename
+        self.root = Patterns("Root")
+        self.current = self.root
     
     def runExtraction(self):
         """Runs the program."""
@@ -29,13 +25,12 @@ class PatternExtraction:
         with open(self.filename) as file: ## Data file need to analyze 
             data = json.load(file)
             for i in range(len(data)):
-                print data[i]
                 self.parseLine(data[i])
                 ## After one line is finished, reset the cursor to root.
-                current = root
+                self.current = self.root
 
         ## Function call that print the tree
-        self.printPatter(root)
+        self.printPatter(self.root)
 
     def parseLine(self, jsonData):
         """Extract pattern names and put them in a tree
@@ -49,27 +44,27 @@ class PatternExtraction:
                 jsonData: a single json object(structure)
         """
         
-        global current #Use the global variable current
-        global root #Use the global variable root
+#         global current #Use the global variable current
+#         global root #Use the global variable root
         if 'subs' not in jsonData.values()[0]:
             # Convert json key object to a string
             strKey = json.dumps(jsonData.keys())
             result = strKey.split('\"')[1].strip()
             # Construct a new node object with pattern name.
             node = Patterns(result)
-            nextIndex = current.isInList(node)
+            nextIndex = self.current.isInList(node)
             # Check if this pattern is already exist in the tree,
             # if already exit get the index of this node then 
             # move current curse to the next node.
             if(nextIndex >= 0):
-                current = current.next[nextIndex]
-                current.count += 1
+                self.current = self.current.next[nextIndex]
+                self.current.count += 1
             else:
             ## If pattern does not exist in current node's children
             # list
-                nextIndex = current.addNode(node)
-                current = current.next[nextIndex]
-                current.count += 1
+                nextIndex = self.current.addNode(node)
+                self.current = self.current.next[nextIndex]
+                self.current.count += 1
         else: 
             ## Go deeper into the json structure if
             ## current pattern is not the deepest.
