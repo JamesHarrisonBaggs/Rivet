@@ -37,7 +37,7 @@ class PatternExtraction:
         ## Function call that print the tree
         self.printPatter(root)
 
-    def parseLine(jsonData):
+    def parseLine(self, jsonData):
         """Extract pattern names and put them in a tree
             
             A recursive function that get a single Json object, extract the 
@@ -76,9 +76,9 @@ class PatternExtraction:
             data = jsonData.values()[0]['subs']
             for i in range(len(data)):
                 sub = data[i]
-                parseLine(sub)
+                self.parseLine(sub)
 
-    def printPatter(rootNode):
+    def printPatter(self, rootNode):
         """ Print each level of the tree
     
             This function is only print each level of the tree.
