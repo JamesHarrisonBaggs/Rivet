@@ -18,26 +18,14 @@ current = root ## A node cursor represents current node is on.
 ############
 
 class PatternExtraction:
-    
-    def __init__(self, filename):
+
+    def __init__(self,filename):
         """Save the file name given from command-line."""
         self.filename = filename
     
-    def runExtraction(self):
-        """Runs the program."""
-        ## Load the Json file and parse each object that is in the Json array.
-        with open(self.filename) as file: ## Data file need to analyze 
-            data = json.load(file)
-            for i in range(len(data)):
-                print data[i]
-                self.parseLine(data[i])
-                ## After one line is finished, reset the cursor to root.
-                current = root
 
-        ## Function call that print the tree
-        self.printPatter(root)
 
-    def parseLine(self, jsonData):
+    def parseLine(self,jsonData):
         """Extract pattern names and put them in a tree
             
             A recursive function that get a single Json object, extract the 
@@ -48,7 +36,7 @@ class PatternExtraction:
             Args:
                 jsonData: a single json object(structure)
         """
-        
+
         global current #Use the global variable current
         global root #Use the global variable root
         if 'subs' not in jsonData.values()[0]:
@@ -107,6 +95,21 @@ class PatternExtraction:
             ## Move the current level cursor to next level.
             currlvl = nextlvl
             nextlvl = []
+
+    def runExtraction(self):
+        """Runs the program."""
+        ## Load the Json file and parse each object that is in the Json array.
+        with open(self.filename) as file:  ## Data file need to analyze
+            data = json.load(file)
+            for i in range(len(data)):
+                print data[i]
+                self.parseLine(data[i])
+                ## After one line is finished, reset the cursor to root.
+
+                current = root
+
+        ## Function call that print the tree
+        self.printPatter(root)
 
 if __name__ == "__main__":
     extract = PatternExtraction(sys.argv[1])
