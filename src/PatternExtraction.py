@@ -30,8 +30,24 @@ class PatternExtraction:
                 self.current = self.root
 
         ## Function call that print the tree
-        self.printPatter(self.root)
+#         self.printPatter(self.root)
+        self.printTree("", self.root)
 
+    def printTree(self, patterns, node):
+        patterns = patterns + node.name + " "
+        if(len(node.next) == 0):
+            print patterns
+            print
+        else:
+            count = 0
+            for i  in range(len(node.next)):
+                count += node.next[i].count
+                self.printTree(patterns, node.next[i])
+            
+            if(node.count - count !=0):
+                print patterns
+        
+    
     def parseLine(self, jsonData):
         """Extract pattern names and put them in a tree
             
@@ -73,35 +89,6 @@ class PatternExtraction:
                 sub = data[i]
                 self.parseLine(sub)
 
-    def printPatter(self, rootNode):
-        """ Print each level of the tree
-    
-            This function is only print each level of the tree.
-            Each level of the tree will print as a single line
-            in the terminal
-        
-            Args:
-                rootNode: root node of the tree structure 
-        """
-        ## Current level of the tree
-        currlvl = list()
-        ## Add the root node the current level list.
-        currlvl.append(rootNode)
-        ## Next level of the tree.
-        nextlvl = list()
-        ## Add all children of current node to next level list
-        while currlvl:
-            for i in range(len(currlvl)):
-                for j in range(len(currlvl[i].next)):
-                    nextlvl.append(currlvl[i].next[j])
-            ## Print current level pattern names, and numbers of
-            ## time they have appear in this level
-            for i in range(len(currlvl)):
-                print currlvl[i].name, currlvl[i].count, 
-            print ""
-            ## Move the current level cursor to next level.
-            currlvl = nextlvl
-            nextlvl = []
 
 if __name__ == "__main__":
     extract = PatternExtraction(sys.argv[1])
