@@ -19,6 +19,9 @@ current = root ## A node cursor represents current node is on.
 
 class PatternExtraction:
     
+    root = Patterns("Root") ## Root node of the tree structure.
+    current = root ## A node cursor represents current node is on.
+    
     def __init__(self, filename):
         """Save the file name given from command-line."""
         self.filename = filename
@@ -29,7 +32,6 @@ class PatternExtraction:
         with open(self.filename) as file: ## Data file need to analyze 
             data = json.load(file)
             for i in range(len(data)):
-                print data[i]
                 self.parseLine(data[i])
                 ## After one line is finished, reset the cursor to root.
                 current = root

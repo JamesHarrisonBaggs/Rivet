@@ -11,11 +11,16 @@ sys.path.append(home + '/2017FallTeam11/src') # Makes the src folder accessible 
 import unittest
 from BruteForce import BruteForce
 
-class RosieHomeTestCase(unittest.TestCase):
+class BruteForceTestCase(unittest.TestCase):
     def setUp(self):
         """Call before every test case."""
-        self.bruteforce = BruteForce()
+        self.bruteforce = BruteForce("SimpleData.csv")
+
+    def testFileExists(self):
+        assert self.bruteforce.filename == "SimpleData.csv"
+
+    def testRunBruteMethod(self):
+        self.bruteforce.runBrute()
 
 if __name__ == "__main__":
-    bruteTest = BruteForce("SimpleData.csv")
     unittest.main() # run all tests

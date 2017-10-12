@@ -15,7 +15,10 @@ class PatternsTestCase(unittest.TestCase):
     
     def setUp(self):
         """Call before every test case."""
-        self.patExtract = PatternExtraction()
+        self.patExtract = PatternExtraction("SimpleData.csv")
+        
+
+    
 
 
 if __name__ == "__main__":
