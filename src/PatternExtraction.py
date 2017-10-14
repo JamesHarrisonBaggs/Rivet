@@ -13,9 +13,6 @@ from platform import node
 
 class PatternExtraction:
     
-    root = Patterns("Root") ## Root node of the tree structure.
-    current = root ## A node cursor represents current node is on.
-    
     def __init__(self, filename):
         """Save the file name given from command-line."""
         self.filename = filename
