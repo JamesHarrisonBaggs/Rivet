@@ -18,6 +18,7 @@ class PatternExtraction:
         self.filename = filename
         self.root = Patterns("Root")
         self.current = self.root
+        self.patternResult = list()
     
     def runExtraction(self):
         """Runs the program."""
@@ -31,21 +32,53 @@ class PatternExtraction:
 
         ## Function call that print the tree
 #         self.printPatter(self.root)
-        self.printTree("", self.root)
+        self.formPatFromTree(list(), self.root)
+        self.printResult()
 
-    def printTree(self, patterns, node):
-        patterns = patterns + node.name + " "
+    def printResult(self):
+        """Print the all patterns in the result list
+        
+           This function first sort patterns according to the times
+           each number appears in the data file. The pattern appears 
+           the most will be in the first index of the list. After the
+           sorting of the list print all patterns name to the console
+        """
+        self.patternResult.sort(key = lambda x: x[len(x) - 1].count)
+        for i in reversed(self.patternResult):
+            list = i
+            for j in range(len(list)):
+                print list[j].name, 
+            print list[len(list) - 1].count,
+            print "\n"
+        
+    def formPatFromTree(self, patterns, node):
+        """Form patterns from trees
+        
+           A recursive function that form patterns from the tree
+           and store each patterns into a final list.
+           
+           Args:
+               patterns: a list of nodes, this list represents a single pattern
+               node: current node the function is working on
+        
+        """
+        ## Remove the Root name from the list since it's not a actual pattern name
+        if(node.name != "Root"):
+            patterns.append(node)
+        ## When current node has no more children which means this is 
+        ## the end of  pattern, other wise keep going.
         if(len(node.next) == 0):
-            print patterns
-            print
+            self.patternResult.append(patterns)
         else:
             count = 0
             for i  in range(len(node.next)):
                 count += node.next[i].count
-                self.printTree(patterns, node.next[i])
+                newList = list(patterns)
+                self.formPatFromTree(newList, node.next[i])
             
-            if(node.count - count !=0):
-                print patterns
+            if(node.count - count !=0 and len(patterns) != 0):
+                node.count = node.count - count
+                self.patternResult.append(patterns)
         
     
     def parseLine(self, jsonData):
@@ -88,7 +121,7 @@ class PatternExtraction:
             for i in range(len(data)):
                 sub = data[i]
                 self.parseLine(sub)
-
+                
 
 if __name__ == "__main__":
     extract = PatternExtraction(sys.argv[1])
