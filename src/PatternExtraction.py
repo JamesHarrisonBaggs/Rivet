@@ -44,12 +44,15 @@ class PatternExtraction:
            sorting of the list print all patterns name to the console
         """
         self.patternResult.sort(key=lambda x: x[len(x) - 1].count)
+        f = open('result.txt', 'w')
+
         for i in reversed(self.patternResult):
             list = i
             for j in range(len(list)):
-                print list[j].name,
-            print list[len(list) - 1].count,
-            print "\n"
+                 f.write(list[j].name+" ")
+            f.write(str(list[len(list) - 1].count))
+            f.write("\n")
+        f.close()
 
     def formPatFromTree(self, patterns, node):
         """Form patterns from trees
