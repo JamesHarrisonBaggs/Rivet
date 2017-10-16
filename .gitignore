@@ -41,3 +41,5 @@ Thumbs.db
 *.json
 *.coverage
 /test/htmlcov
+/.idea/
+/configure/
