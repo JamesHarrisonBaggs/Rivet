@@ -65,6 +65,7 @@ class BruteForce:
                     self.print_match_results(self.r, self.of)
                     number += 1  ## This is just keep tracking lines numbers
                 json.dump(self.list, self.of, indent=2)
+        self.list = []
 
     def print_match_results(self, r, of):
         match = json.loads(r[0]) if r else False
