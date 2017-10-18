@@ -71,6 +71,7 @@ class BruteForce:
         match = json.loads(r[0]) if r else False
         self.list.append(match)
         leftover = json.loads(r[1])
+        self.list.append(leftover)
 
     def checkResult(self):
         ##reading the file from result.txt to
@@ -78,11 +79,16 @@ class BruteForce:
         with open(resultfile) as f:
             content = f.read().splitlines()
 
+        str1 ='';
         i = 0
         while i < len(content):
-            self.runPattern(content[i][:len(content[i])-2], "result"+str(i)+".json")
+            if (i == len(content)-1):
+                str1 = str1 + (content[i][:len(content[i]) - 2])
+            else:
+                str1 = str1 + (content[i][:len(content[i]) - 2]+"/")
             i += 1
-
+        print str1
+        self.runPattern(str1, "resultFinal.json")
 
 if __name__ == "__main__":
     brute = BruteForce(sys.argv[1])
