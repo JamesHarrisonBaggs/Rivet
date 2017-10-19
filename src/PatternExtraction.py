@@ -50,7 +50,7 @@ class PatternExtraction:
             list = i
             for j in range(len(list)):
                  f.write(list[j].name+" ")
-            f.write(str(list[len(list) - 1].count))
+#             f.write(str(list[len(list) - 1].count))
             f.write("\n")
         f.close()
 
