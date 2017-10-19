@@ -61,7 +61,7 @@ class BruteForce:
             with open(filename,
                       'w') as self.of:  ## This is the output json file that contains all pattern that matched
                 for line in file:
-                    self.r = self.engine.match(line, None)
+                    self.r = self.engine.match(line.splitlines(0)[0], None)
                     self.print_match_results(self.r, self.of)
                     number += 1  ## This is just keep tracking lines numbers
                 json.dump(self.list, self.of, indent=2)
