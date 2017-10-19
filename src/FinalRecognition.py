@@ -82,12 +82,10 @@ class BruteForce:
         str1 ='';
         i = 0
         while i < len(content):
-            if (i == len(content)-1):
-                str1 = str1 + (content[i][:len(content[i]) - 2])
-            else:
-                str1 = str1 + (content[i][:len(content[i]) - 2]+"/")
+            str1 = str1 + "(" + (content[i]) + ")"
             i += 1
-        print str1
+            if (i < len(content)):
+                str1 += "/"
         self.runPattern(str1, "resultFinal.json")
 
 if __name__ == "__main__":

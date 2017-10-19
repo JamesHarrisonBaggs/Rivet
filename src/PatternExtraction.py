@@ -50,7 +50,6 @@ class PatternExtraction:
             list = i
             for j in range(len(list)):
                  f.write(list[j].name+" ")
-            f.write(str(list[len(list) - 1].count))
             f.write("\n")
         f.close()
 
@@ -80,7 +79,6 @@ class PatternExtraction:
                 self.formPatFromTree(newList, node.next[i])
 
             if (node.count - count != 0 and len(patterns) != 0):
-                node.count = node.count - count
                 self.patternResult.append(patterns)
 
     def parseLine(self, jsonData):
