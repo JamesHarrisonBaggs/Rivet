@@ -11,7 +11,7 @@ import os, json, sys
 import rosie
 
 
-class BruteForce:
+class FinalDataPattern:
     def __init__(self, filename):
         """Initialize the variables."""
         self.filename = filename
@@ -24,7 +24,7 @@ class BruteForce:
         self.of = None
         self.list = []
 
-    def runBrute(self):
+    def runCustomizedPattern(self):
         """Runs the program."""
         self.ROSIE_HOME = os.getenv("ROSIE_HOME")
         if not self.ROSIE_HOME:
@@ -51,14 +51,15 @@ class BruteForce:
         self.r = self.engine.load_manifest("$sys/MANIFEST")
         # for s in self.r: print s
 
+        # Load the customized rpl file
         self.r = self.engine.load_file("result.rpl")
 
-        ##Use the basic.matchall to parse all data
+        # Use the customized pattern to matach all the file
         self.config = json.dumps({'expression': 'customized'})
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file:  ## Data file need to analyize
-            with open("outputNewData.json",
+            with open("customizedResult.json",
                       'w') as self.of:  ## This is the output json file that contains all pattern that matched
                 for line in file:
                     self.r = self.engine.match(line, None)
@@ -74,5 +75,5 @@ class BruteForce:
 
 
 if __name__ == "__main__":
-    brute = BruteForce(sys.argv[1])
-    brute.runBrute()
+    brute = FinalDataPattern(sys.argv[1])
+    brute.runCustomizedPattern()
