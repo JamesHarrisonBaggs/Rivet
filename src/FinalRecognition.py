@@ -24,6 +24,7 @@ class BruteForce:
         self.of = None
         ## Json objects for all line.
         self.list = []
+        self.PatternList = []
 
     def runPattern(self, matchfile):
         """Runs the program."""
@@ -59,14 +60,14 @@ class BruteForce:
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file:  ## Data file need to analyize
-          ## This is the output json file that contains all pattern that matched
+            ## This is the output json file that contains all pattern that matched
             for line in file:
                 # print(line[-4:])
                 self.r = self.engine.match(line, None)
                 self.print_match_results(self.r, currentPatList)
                 number += 1  ## This is just keep tracking lines numbers
             self.list.append(currentPatList)
-                
+            self.PatternList.append(matchfile)
 
     def print_match_results(self, r, currentList):
         match = json.loads(r[0]) if r else False
@@ -92,11 +93,29 @@ class BruteForce:
         for i in range(len(self.list)):
             count = 0
             for j in self.list[i]:
-                if(j != False):
+                if (j != False):
                     count += 1
             percentage = round(float(count) / len(self.list[i]) * 100, 2)
             strReport = str(i) + " has " + str(count) + " matched " + str(percentage) + "% of total data"
             print strReport
+
+    def CustomizedPatternCreation(self):
+        print "What are the patterns you want to choose "
+        sequence = raw_input("<pattern number> <pattern number> \n example: 1 2 \n").split()
+        filename = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
+        patternName = raw_input("Give the name to your customized patternName \n example: customer \n")
+        choosen = []
+        for i in sequence:
+            choosen.append(int(i))
+        with open(filename, "w") as cof:
+            cof.write(patternName+ " = ")
+            s = ' / '
+            sqe = []
+            for i in range(len(choosen)):
+                sqe.append("(" + str(self.PatternList[choosen[i]]) + ")")
+            s = s.join(sqe)
+            cof.write(s)
+
 
 if __name__ == "__main__":
     brute = BruteForce(sys.argv[1])
@@ -104,3 +123,4 @@ if __name__ == "__main__":
     with open("resultFinal.json", "w") as of:
         json.dump(brute.list, of, indent=2)
     brute.reportNumber()
+    brute.CustomizedPatternCreation()
