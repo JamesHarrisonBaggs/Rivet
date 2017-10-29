@@ -1,20 +1,35 @@
+"""
+    A program reads a sample datafile and outputs a sample
+    of the lines of that file
+
+"""
+
+import os, json, sys
 import pandas as pd
-import random, sys
+import random
 
-# The data to load
-f = sys.argv[1]
+try:
+	############
+	#GLOBAL VARS
+	samplePercentage = sys.argv[1]
+	inputfile = sys.argv[2] ## Command line argument get file name from command line
+	outputfile = sys.argv[3]
+	############
+except IndexError as err:
+	print("Required arguments: Sample size, input file, output file")
+	print("eg: >python sample.py 5 Data.csv Output.csv")
+	exit(0)
 
-# Count the lines
-num_lines = sum(1 for l in open(f))
 
-# Sample size - in this case ~20%
-size = int(num_lines / 5)
+num_lines = sum(1 for line in open(inputfile))
+print("Number of lines in input file: " + str(num_lines))
+size = int(num_lines * (int(samplePercentage)/100.0))
+print("Number of lines to sample: " +str(size))
 
-# The row indices to skip - make sure 0 is not included to keep the header!
-skip_idx = random.sample(range(0, num_lines), num_lines - size)
+select_idx = random.sample(range(0, num_lines), size)
 
-# Read the data
-data = pd.read_csv(f, skiprows=skip_idx)
-# print data
-
-data.to_csv('sample.csv', index=False)
+f = open(outputfile, 'w')
+for i, line in enumerate(open(inputfile)):
+    if i in select_idx:
+    	f.write(line)   
+f.close();
