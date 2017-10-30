@@ -1,8 +1,8 @@
-#  TestPatternExtraction.py
+#  TestFinalRecognition.py
 #
 #  Unit tests for FinalRecognition.py
 #
-#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
+#  Authors: Yuxu Yang, Xiaoyu Chen, James Baggs
 import sys, os.path, unittest, os, json, sys
 from os.path import expanduser
 home = expanduser("~") # Saves the user's home directory
@@ -28,7 +28,8 @@ class FinalRecognitionTestCase(unittest.TestCase):
             os.remove('result.rpl')
         self.finalRecog = FinalRecognition("test/testDataStructure.csv")
 
-
+    # there are three user input, '1 2' means user choose number 1 and number 2 for build customized rpl file,
+    # result.rpl is the name, result is the pattern name
     m = Mock()
     m.side_effect = ['1 2', 'result.rpl', 'result']
     def testRun(self):
