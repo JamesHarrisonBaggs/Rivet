@@ -8,7 +8,7 @@ import sys
 from os.path import expanduser
 
 home = expanduser("~")  # Saves the user's home directory
-sys.path.append(home + '/2017FallTeam11/src')  # Makes the src folder accessible for testing
+sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src')  # Makes the src folder accessible for testing
 import unittest
 from PatternExtraction import PatternExtraction
 from BruteForce import BruteForce
@@ -19,7 +19,7 @@ class PatternsTestCase(unittest.TestCase):
         """Call before every test case."""
 
         # This must run first to create the output.json file
-        self.bruteforce = BruteForce("SimpleData.csv")
+        self.bruteforce = BruteForce("test/SimpleData.csv")
         self.bruteforce.runBrute()
 
         self.patExtract = PatternExtraction("output.json")

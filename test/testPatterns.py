@@ -7,7 +7,7 @@
 import sys
 from os.path import expanduser
 home = expanduser("~") # Saves the user's home directory
-sys.path.append(home + '/2017FallTeam11/src') # Makes the src folder accessible for testing
+sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
 import unittest
 from Patterns import Patterns
 
