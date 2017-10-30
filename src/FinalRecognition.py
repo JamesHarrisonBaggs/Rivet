@@ -11,7 +11,7 @@ import os, json, sys
 import rosie
 
 
-class BruteForce:
+class FinalRecognition:
     def __init__(self, filename):
         """Initialize the variables."""
         self.filename = filename
@@ -116,11 +116,10 @@ class BruteForce:
             s = s.join(sqe)
             cof.write(s)
 
-
-if __name__ == "__main__":
-    brute = BruteForce(sys.argv[1])
-    brute.checkResult()
-    with open("resultFinal.json", "w") as of:
-        json.dump(brute.list, of, indent=2)
-    brute.reportNumber()
-    brute.CustomizedPatternCreation()
+    def run(self):
+        self.checkResult()
+        with open("resultFinal.json", "w") as of:
+            json.dump(self.list, of, indent=2)
+        self.reportNumber()
+        self.CustomizedPatternCreation()
+# if __name__ == "__main__":

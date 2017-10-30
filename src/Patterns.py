@@ -8,6 +8,7 @@ class Patterns:
         after this pattern.
     """
     
+    
     def __init__(self, name):
         """Initial the node object
             

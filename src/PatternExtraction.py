@@ -34,6 +34,8 @@ class PatternExtraction:
                 #         self.printPatter(self.root)
         self.formPatFromTree(list(), self.root)
         self.printResult()
+        print("Pattern Extraction: Complete")
+
 
     def printResult(self):
         """Print the all patterns in the result list
