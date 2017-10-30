@@ -11,6 +11,7 @@ import os, json, sys
 import rosie
 
 
+
 class FinalRecognition:
     def __init__(self, filename):
         """Initialize the variables."""
@@ -21,7 +22,9 @@ class FinalRecognition:
         self.config = None
         self.r = None
         self.tbl = None
-        self.of = None
+        self.RPLFileName = None
+        self.PatternName = None
+        self.Sequence = None
         ## Json objects for all line.
         self.list = []
         self.PatternList = []
@@ -100,15 +103,18 @@ class FinalRecognition:
             print strReport
 
     def CustomizedPatternCreation(self):
-        print "What are the patterns you want to choose "
-        sequence = raw_input("<pattern number> <pattern number> \n example: 1 2 \n").split()
-        filename = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
-        patternName = raw_input("Give the name to your customized patternName \n example: customer \n")
+        self.Sequence = raw_input("What are the patterns you want to choose \n<pattern number> <pattern number> \n example: 1 2 \n")
+        print self.Sequence
+        self.Sequence = self.Sequence.split()
+        self.RPLFileName = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
+        print self.RPLFileName
+        self.PatternName = raw_input("Give the name to your customized patternName \n example: customer \n")
+        print self.PatternName
         choosen = []
-        for i in sequence:
+        for i in self.Sequence:
             choosen.append(int(i))
-        with open(filename, "w") as cof:
-            cof.write(patternName+ " = ")
+        with open(self.RPLFileName, "w") as cof:
+            cof.write(self.PatternName+ " = ")
             s = ' / '
             sqe = []
             for i in range(len(choosen)):
@@ -122,4 +128,7 @@ class FinalRecognition:
             json.dump(self.list, of, indent=2)
         self.reportNumber()
         self.CustomizedPatternCreation()
-# if __name__ == "__main__":
+
+if __name__ == "__main__":
+    final = FinalRecognition(sys.argv[1])
+    final.run()
