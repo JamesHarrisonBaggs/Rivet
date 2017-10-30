@@ -71,5 +71,5 @@ class BruteForce:
         leftover = json.loads(r[1])
 
 if __name__ == "__main__":
-    Brute = BreutForce(sys.argv[1])
+    Brute = BruteForce(sys.argv[1])
     Brute.runBrute()
