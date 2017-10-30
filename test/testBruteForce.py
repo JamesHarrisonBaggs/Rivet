@@ -7,7 +7,7 @@
 import sys, os.path, unittest, io
 from os.path import expanduser
 home = expanduser("~") # Saves the user's home directory
-sys.path.append(home + '/2017FallTeam11/src') # Makes the src folder accessible for testing
+sys.path.append(home + 'Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
 from BruteForce import BruteForce
 
 class BruteForceTestCase(unittest.TestCase):
@@ -28,7 +28,7 @@ class BruteForceTestCase(unittest.TestCase):
         {u'common.number': {u'text': u'1234', u'subs': [{u'common.int': {u'text': u'1234', u'pos': 11}}], u'pos': 11}},
         {u'basic.punctuation': {u'text': u',', u'pos': 15}}, {u'common.word': {u'text': u'Tim', u'pos': 16}}], u'pos': 1}}]
 
-        self.json_file_path = home + '/2017FallTeam11/src/output.json'
+        self.json_file_path = home + 'Desktop/2017/CSC492/2017FallTeam11/src/output.json'
         
         self.bruteforce = BruteForce("SimpleData.csv")
         self.bruteforce.runBrute()
@@ -40,7 +40,7 @@ class BruteForceTestCase(unittest.TestCase):
 
     def testRunBrute(self):
         """Tests the runBrute function. Most of this function calls functions from rosie.py which isn't our code."""
-        assert self.bruteforce.ROSIE_HOME == self.home + "/rosie-pattern-language"
+        assert self.bruteforce.ROSIE_HOME == self.home + "/Desktop/rosie-pattern-language"
         assert self.bruteforce.config == """{"expression": "basic.matchall"}"""
 
         # Can't explicitly test these because they are different every time they are generated
