@@ -4,7 +4,7 @@
 #
 #  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
 
-import sys
+import sys,os
 from os.path import expanduser
 
 home = expanduser("~")  # Saves the user's home directory
@@ -17,16 +17,22 @@ from BruteForce import BruteForce
 class PatternsTestCase(unittest.TestCase):
     def setUp(self):
         """Call before every test case."""
-
+        os.remove("result.txt")
         # This must run first to create the output.json file
         self.bruteforce = BruteForce("test/SimpleData.csv")
         self.bruteforce.runBrute()
 
         self.patExtract = PatternExtraction("output.json")
+        self.patExtract.runExtraction()
 
     def testFileExists(self):
         """Tests that the file exist"""
         assert self.patExtract.filename == "output.json"
+
+    def testRunExtraction(self):
+        """Tests the runExtraction function"""
+        assert os.path.exists("result.txt")
+        assert os.path.isfile("result.txt")
 
 
 if __name__ == "__main__":

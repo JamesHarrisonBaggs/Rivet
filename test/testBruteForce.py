@@ -10,8 +10,9 @@ home = expanduser("~") # Saves the user's home directory
 sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
 from BruteForce import BruteForce
 
+
 class BruteForceTestCase(unittest.TestCase):
-    
+
     def setUp(self):
         """Call before every test case."""
         self.home = expanduser("~/Desktop") # Saves the user's home directory
@@ -57,7 +58,6 @@ class BruteForceTestCase(unittest.TestCase):
         assert os.path.exists(self.json_file_path)
         assert os.path.isfile(self.json_file_path)
 
-        
 
 
 
