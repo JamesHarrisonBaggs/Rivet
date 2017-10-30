@@ -23,6 +23,7 @@ class BruteForce:
         self.tbl = None
         self.of = None
         self.list = []
+        self.outputfile = "output.json"
     
     def runBrute(self):
         """Runs the program."""
@@ -57,7 +58,7 @@ class BruteForce:
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file: ## Data file need to analyize 
-            with open("output.json", 'w') as self.of: ## This is the output json file that contains all pattern that matched
+            with open(self.outputfile, 'w') as self.of: ## This is the output json file that contains all pattern that matched
                 for line in file:
                     self.r = self.engine.match(line, None)
                     self.print_match_results(self.r, self.of)
@@ -70,5 +71,5 @@ class BruteForce:
         leftover = json.loads(r[1])
 
 if __name__ == "__main__":
-    brute = BruteForce(sys.argv[1])
-    brute.runBrute()
+    Brute = BreutForce(sys.argv[1])
+    Brute.runBrute()

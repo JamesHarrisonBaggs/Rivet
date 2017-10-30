@@ -1,20 +1,44 @@
-import pandas as pd
-import random, sys
+"""
+    A program reads a sample datafile and outputs a sample
+    of the lines of that file
 
-# The data to load
-f = sys.argv[1]
+"""
 
-# Count the lines
-num_lines = sum(1 for l in open(f))
+import os, json, sys
+# import pandas as pd
+import random
 
-# Sample size - in this case ~20%
-size = int(num_lines / 5)
+class sample():
 
-# The row indices to skip - make sure 0 is not included to keep the header!
-skip_idx = random.sample(range(0, num_lines), num_lines - size)
+	def __init__(self, samplePercentage, inputfile):
+		try:
+			############
+			#GLOBAL VARS
+			self.samplePercentage = samplePercentage
+			self.inputfile = inputfile ## Command line argument get file name from command line
+			self.outputfile = "sample_" + inputfile
+			############
+		except IndexError as err:
+			print("Required arguments: Sample size, input file, output file")
+			print("eg: >python sample.py 5 Data.csv Output.csv")
+			exit(0)
+	def sampling(self):
+		num_lines = sum(1 for line in open(self.inputfile))
 
-# Read the data
-data = pd.read_csv(f, skiprows=skip_idx)
-# print data
+		size = int(num_lines * (int(self.samplePercentage)/100.0))
 
-data.to_csv('sample.csv', index=False)
+		select_idx = random.sample(range(0, num_lines), size)
+
+		f = open(self.outputfile, 'w')
+		for i, line in enumerate(open(self.inputfile)):
+		    if i in select_idx:
+		    	f.write(line)   
+		f.close()
+		if(size == 0):
+			print("Sample size is small")
+			sys.exit(1)
+		else:
+			print("Sampling complete: ")
+			print("Number of lines in input file: " + str(num_lines))
+			print("Number of lines to sample: " +str(size))
+			print("")

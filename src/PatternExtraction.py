@@ -34,6 +34,8 @@ class PatternExtraction:
                 #         self.printPatter(self.root)
         self.formPatFromTree(list(), self.root)
         self.printResult()
+        print("Pattern Extraction: Complete")
+
 
     def printResult(self):
         """Print the all patterns in the result list
@@ -50,7 +52,9 @@ class PatternExtraction:
             list = i
             for j in range(len(list)):
                  f.write(list[j].name+" ")
-            f.write("\n")
+            # f.write(str(list[len(list) - 1].count))
+
+            f.write("$\n")
         f.close()
 
     def formPatFromTree(self, patterns, node):
@@ -79,6 +83,7 @@ class PatternExtraction:
                 self.formPatFromTree(newList, node.next[i])
 
             if (node.count - count != 0 and len(patterns) != 0):
+                node.count = node.count - count
                 self.patternResult.append(patterns)
 
     def parseLine(self, jsonData):

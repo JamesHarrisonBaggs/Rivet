@@ -60,6 +60,9 @@ struct rosieL_stringArray rosieL_match_file(void *L, struct rosieL_string *infil
 
 """)
 
+
+
+
 def to_cstr_ptr(Rosie, py_string):
     return Rosie.rosieL_new_string(py_string, len(py_string))
 
@@ -151,6 +154,12 @@ class engine ():
     def load_manifest(self, path):
         r = self.rosie.rosie.rosieL_load_manifest(self.engine, to_cstr_ptr(self.rosie.rosie, path))
         #printArray(r, "load_manifest")
+        retvals = self.rosie.get_retvals(r)
+        return retvals
+
+    def load_file(self, path):
+        r = self.rosie.rosie.rosieL_load_file(self.engine, to_cstr_ptr(self.rosie.rosie, path))
+        # printArray(r, "load_manifest")
         retvals = self.rosie.get_retvals(r)
         return retvals
 
