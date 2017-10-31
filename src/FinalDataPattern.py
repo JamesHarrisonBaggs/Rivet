@@ -6,7 +6,6 @@
 #  Code copied and modified from rtest.py.
 #
 #  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
-
 import os, json, sys
 import rosie
 
@@ -52,10 +51,10 @@ class FinalDataPattern:
         # for s in self.r: print s
 
         # Load the customized rpl file
-        self.r = self.engine.load_file("result.rpl")
+        self.r = self.engine.load_file("yuxu.rpl")
 
         # Use the customized pattern to matach all the file
-        self.config = json.dumps({'expression': 'customized'})
+        self.config = json.dumps({'expression': 'work'})
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file:  ## Data file need to analyize
