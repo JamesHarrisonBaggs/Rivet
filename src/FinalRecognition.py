@@ -99,17 +99,17 @@ class FinalRecognition:
                 if (j != False):
                     count += 1
             percentage = round(float(count) / len(self.list[i]) * 100, 2)
-            strReport = str(i) + " has " + str(count) + " matched " + str(percentage) + "% of total data"
+            strReport = " Pattern Number "+str(i) + " has " + str(count) + " matched " + str(percentage) + "% of total data"
             print strReport
 
     def CustomizedPatternCreation(self):
         self.Sequence = raw_input("What are the patterns you want to choose \n<pattern number> <pattern number> \n example: 1 2 \n")
-        print self.Sequence
+        # print self.Sequence
         self.Sequence = self.Sequence.split()
         self.RPLFileName = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
-        print self.RPLFileName
+        # print self.RPLFileName
         self.PatternName = raw_input("Give the name to your customized patternName \n example: customer \n")
-        print self.PatternName
+        # print self.PatternName
         choosen = []
         for i in self.Sequence:
             choosen.append(int(i))

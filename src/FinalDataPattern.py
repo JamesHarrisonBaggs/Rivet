@@ -51,10 +51,10 @@ class FinalDataPattern:
         # for s in self.r: print s
 
         # Load the customized rpl file
-        self.r = self.engine.load_file("yuxu.rpl")
+        self.r = self.engine.load_file("result.rpl")
 
         # Use the customized pattern to matach all the file
-        self.config = json.dumps({'expression': 'work'})
+        self.config = json.dumps({'expression': 'result'})
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file:  ## Data file need to analyize
