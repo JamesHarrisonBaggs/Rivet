@@ -180,7 +180,7 @@ class engine ():
 
     def __del__(self):
         if self.id:
-            print "Garbage collecting engine", self.id
+            #print "Garbage collecting engine", self.id
             self.rosie.rosie.rosieL_finalize(self.engine)
 
     def match_file(self, input, output, error, wholefileflag):
