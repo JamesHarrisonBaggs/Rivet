@@ -16,7 +16,7 @@ class sample():
 			#GLOBAL VARS
 			self.samplePercentage = samplePercentage
 			self.inputfile = inputfile ## Command line argument get file name from command line
-			self.outputfile = "sample_" + inputfile
+			self.outputfile = inputfile + "_sample"
 			############
 		except IndexError as err:
 			print("Required arguments: Sample size, input file, output file")
@@ -25,7 +25,7 @@ class sample():
 	def sampling(self):
 		num_lines = sum(1 for line in open(self.inputfile))
 
-		size = int(num_lines * (int(self.samplePercentage)/100.0))
+		size = int(num_lines * ((self.samplePercentage)/100.0))
 
 		select_idx = random.sample(range(0, num_lines), size)
 
