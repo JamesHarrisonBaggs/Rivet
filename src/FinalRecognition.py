@@ -129,6 +129,32 @@ class FinalRecognition:
         self.reportNumber()
         self.CustomizedPatternCreation()
 
+    #Automatically generates RPL given a prune Percentage.
+    #Returns match percentage
+    def runNoUI(self, prunePct):
+        self.checkResult()
+        self.RPLFileName = "auto.rpl"
+        self.PatternName = "auto"
+        totalPct = 0.0
+        with open(self.RPLFileName, "w") as cof:
+            cof.write(self.PatternName+ " = ")
+            s = ' / '
+            sqe = []
+            for x in range(len(self.PatternList)):
+                count = 0
+                percentage = 0;
+                for j in self.list[x]:
+                    if (j != False):
+                           count += 1
+                    percentage = round(float(count) / len(self.list[x]) * 100, 2)
+                    
+                if (int(prunePct) < int(percentage)):
+                    totalPct += percentage
+                    sqe.append("(" + str(self.PatternList[x]) + ")")
+            s = s.join(sqe)
+            cof.write(s)
+        return totalPct
+
 if __name__ == "__main__":
     final = FinalRecognition(sys.argv[1])
     final.run()

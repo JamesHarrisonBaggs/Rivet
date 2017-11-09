@@ -106,7 +106,6 @@ print
 print("*Begin File Pattern Enhanced Timing Runs (These may take a long time for large files)*")
 print filePatternName
 rosieCommand = "/usr/bin/time" + " -p rosie -f " + filePatternName + " " + pattern + " " + dataFileName + " >/dev/null"
-print rosieCommand
 for x in range(0, numTimingRuns):
     # Create the subprocess. Pipe the stdout into p.
     p = subprocess.Popen(rosieCommand, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

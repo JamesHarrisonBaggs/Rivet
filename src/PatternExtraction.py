@@ -21,6 +21,7 @@ class PatternExtraction:
         self.patternResult = list()
 
     def runExtraction(self):
+        print("Pattern Extraction: Started")
         """Runs the program."""
         ## Load the Json file and parse each object that is in the Json array.
         with open(self.filename) as file:  ## Data file need to analyze
