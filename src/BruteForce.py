@@ -9,6 +9,7 @@
 
 import os, json, sys
 import rosie
+from progressbar import ProgressBar
 
 class BruteForce:
     
@@ -24,8 +25,10 @@ class BruteForce:
         self.of = None
         self.list = []
         self.outputfile = "output.json"
+        self.pbar = ProgressBar()
     
     def runBrute(self):
+        print ("Parsing the data:...")
         """Runs the program."""
         self.ROSIE_HOME = os.getenv("ROSIE_HOME")
         if not self.ROSIE_HOME:
@@ -59,11 +62,23 @@ class BruteForce:
         number = 0
         with open(self.filename) as file: ## Data file need to analyize 
             with open(self.outputfile, 'w') as self.of: ## This is the output json file that contains all pattern that matched
+                ## Variable for progress bar
+                filesize = os.path.getsize(self.filename)
+                progress = 0
                 for line in file:
                     self.r = self.engine.match(line, None)
                     self.print_match_results(self.r, self.of)
                     number += 1 ## This is just keep tracking lines numbers      
+                    
+                    ## Progress bar
+                    progress = progress + len(line)
+                    progressPercent =  round((float)(progress) / filesize * 100, 1)
+                    print '\r[{0}] {1}%'.format('#'*(int(progressPercent)/2), progressPercent),
+                
                 json.dump(self.list, self.of, indent = 2)
+        print("")
+        print("Parsing the data: Complete")
+        print("")
 
     def print_match_results(self, r, of):
         match = json.loads(r[0]) if r else False
