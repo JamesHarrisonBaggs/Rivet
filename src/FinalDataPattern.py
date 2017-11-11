@@ -22,6 +22,7 @@ class FinalDataPattern:
         self.tbl = None
         self.of = None
         self.list = []
+        self.matchRate = 0
 
     def runCustomizedPattern(self):
         """Runs the program."""
@@ -51,12 +52,13 @@ class FinalDataPattern:
         # for s in self.r: print s
 
         # Load the customized rpl file
-        self.r = self.engine.load_file("result.rpl")
+        self.r = self.engine.load_file(sys.argv[2])
 
         # Use the customized pattern to matach all the file
-        self.config = json.dumps({'expression': 'result'})
+        self.config = json.dumps({'expression': sys.argv[3]})
         self.r = self.engine.configure(self.config)
         number = 0
+        self.matchRate = 0
         with open(self.filename) as file:  ## Data file need to analyize
             with open("customizedResult.json",
                       'w') as self.of:  ## This is the output json file that contains all pattern that matched
@@ -65,11 +67,15 @@ class FinalDataPattern:
                     self.print_match_results(self.r, self.of)
                     number += 1  ## This is just keep tracking lines numbers
                 json.dump(self.list, self.of, indent=2)
+                print round(float(self.matchRate) / float(number) * 100, 2)
+
 
     def print_match_results(self, r, of):
         match = json.loads(r[0]) if r else False
         self.list.append(match)
         leftover = json.loads(r[1])
+        if (leftover == 0):
+            self.matchRate = self.matchRate+1
         self.list.append(leftover)
 
 

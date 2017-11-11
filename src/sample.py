@@ -25,7 +25,7 @@ class sample():
 	def sampling(self):
 		num_lines = sum(1 for line in open(self.inputfile))
 
-		size = int(num_lines * ((self.samplePercentage)/100.0))
+		size = int(num_lines * (float(self.samplePercentage)/100.0))
 
 		select_idx = random.sample(range(0, num_lines), size)
 
