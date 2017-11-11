@@ -19,6 +19,7 @@ class PatternExtraction:
         self.root = Patterns("Root")
         self.current = self.root
         self.patternResult = list()
+        self.numLines = 0
 
     def runExtraction(self):
         print("Pattern Extraction: Started")
@@ -26,16 +27,20 @@ class PatternExtraction:
         ## Load the Json file and parse each object that is in the Json array.
         with open(self.filename) as file:  ## Data file need to analyze
             data = json.load(file)
+            self.numLines = len(data)
             for i in range(len(data)):
                 self.parseLine(data[i])
                 ## After one line is finished, reset the cursor to root.
                 self.current = self.root
+                ## Progress bar
+                percentage = round(float(i) / (len(data) - 1) * 100,1)
+                print '\r[{0}] {1}%'.format('#'*(int(percentage)/2), percentage),
 
-                ## Function call that print the tree
-                #         self.printPatter(self.root)
         self.formPatFromTree(list(), self.root)
         self.printResult()
+        print("")
         print("Pattern Extraction: Complete")
+        print("")
 
 
     def printResult(self):
@@ -54,8 +59,9 @@ class PatternExtraction:
             for j in range(len(list)):
                  f.write(list[j].name+" ")
             # f.write(str(list[len(list) - 1].count))
-
-            f.write("$\n")
+            percentage = round(i[len(i) - 1].count / (float)(self.numLines) * 100, 2)
+            f.write("$" + " ")
+            f.write("," + str(percentage) + "\n" )
         f.close()
 
     def formPatFromTree(self, patterns, node):
@@ -76,6 +82,7 @@ class PatternExtraction:
         ## the end of  pattern, other wise keep going.
         if (len(node.next) == 0):
             self.patternResult.append(patterns)
+            
         else:
             count = 0
             for i in range(len(node.next)):
