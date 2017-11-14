@@ -67,7 +67,7 @@ class FinalDataPattern:
                     self.print_match_results(self.r, self.of)
                     number += 1  ## This is just keep tracking lines numbers
                 json.dump(self.list, self.of, indent=2)
-                print round(float(self.matchRate) / float(number) * 100, 2)
+                print "Match Rate : " + str(round(float(self.matchRate) / float(number) * 100, 2)) + "%"
 
 
     def print_match_results(self, r, of):
