@@ -42,7 +42,7 @@ class Rivet:
 
 if __name__ == "__main__":
     try:
-        options, remainder = getopt.getopt(sys.argv[1:], '', ['sampleSize=', 'prunePct='])
+        options, remainder = getopt.getopt(sys.argv[1:], 's:p:', ['sampleSize=', 'prunePct='])
     except getopt.GetoptError as err:
         print err
         sys.exit(0)
@@ -50,9 +50,9 @@ if __name__ == "__main__":
     size = 100
     prunePct = -1
     for opt, arg in options:
-        if opt in ('--sampleSize'):
+        if opt in ('--sampleSize', '-s'):
             size = arg
-        if opt in ('--prunePct'):
+        if opt in ('--prunePct', '-p'):
             prunePct = arg
     numArgs = len(remainder)
     inputFile = ''
