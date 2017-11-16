@@ -15,12 +15,15 @@ from BruteForce import BruteForce
 
 
 class PatternsTestCase(unittest.TestCase):
+
     def setUp(self):
         """Call before every test case."""
-        os.remove("result.txt")
+        if os.path.isfile("./result.txt"):
+            os.remove("result.txt")
         # This must run first to create the output.json file
-        self.bruteforce = BruteForce("test/SimpleData.csv")
+        self.bruteforce = BruteForce("test/testDataStructure.csv")
         self.bruteforce.runBrute()
+
 
         self.patExtract = PatternExtraction("output.json")
         self.patExtract.runExtraction()
@@ -33,6 +36,7 @@ class PatternsTestCase(unittest.TestCase):
         """Tests the runExtraction function"""
         assert os.path.exists("result.txt")
         assert os.path.isfile("result.txt")
+
 
 
 if __name__ == "__main__":

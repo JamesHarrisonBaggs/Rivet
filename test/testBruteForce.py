@@ -15,7 +15,10 @@ class BruteForceTestCase(unittest.TestCase):
 
     def setUp(self):
         """Call before every test case."""
-        self.home = expanduser("~/Desktop") # Saves the user's home directory
+        self.home = expanduser("~") # Saves the user's home directory
+
+        if (os.path.exists("output.json")):
+            os.remove("output.json")
 
         self.expectedList = [{u'basic.matchall': {u'text': u'10/8/2017,1234,Tim', 
         u'subs': [{u'basic.datetime_patterns': {u'text': u'10/8/2017', 
@@ -29,7 +32,7 @@ class BruteForceTestCase(unittest.TestCase):
         {u'common.number': {u'text': u'1234', u'subs': [{u'common.int': {u'text': u'1234', u'pos': 11}}], u'pos': 11}},
         {u'basic.punctuation': {u'text': u',', u'pos': 15}}, {u'common.word': {u'text': u'Tim', u'pos': 16}}], u'pos': 1}}]
 
-        self.json_file_path = home + '/Desktop/2017/CSC492/2017FallTeam11/src/output.json'
+        self.json_file_path = home + "/Desktop/2017/CSC492/2017FallTeam11/output.json"
         
         self.bruteforce = BruteForce("test/SimpleData.csv")
         self.bruteforce.runBrute()
@@ -41,7 +44,7 @@ class BruteForceTestCase(unittest.TestCase):
 
     def testRunBrute(self):
         """Tests the runBrute function. Most of this function calls functions from rosie.py which isn't our code."""
-        assert self.bruteforce.ROSIE_HOME == self.home + "/rosie-pattern-language"
+        assert self.bruteforce.ROSIE_HOME == self.home + "/Desktop/rosie-pattern-language"
         assert self.bruteforce.config == """{"expression": "basic.matchall"}"""
 
         # Can't explicitly test these because they are different every time they are generated
@@ -55,6 +58,7 @@ class BruteForceTestCase(unittest.TestCase):
         """Test the print_match_results function."""
         self.bruteforce.print_match_results(self.bruteforce.r, self.bruteforce.of)
         assert self.bruteforce.list == self.expectedList
+        print self.json_file_path
         assert os.path.exists(self.json_file_path)
         assert os.path.isfile(self.json_file_path)
 

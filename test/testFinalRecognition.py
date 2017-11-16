@@ -37,20 +37,29 @@ class FinalRecognitionTestCase(unittest.TestCase):
             self.finalRecog.run()
         # Can't explicitly test these because they are different every time they are generated
             assert self.finalRecog.filename is not None
-            assert self.finalRecog.ROSIE_HOME is not None
-            assert self.finalRecog.Rosie is not None
-            assert self.finalRecog.engine is not None
-            assert self.finalRecog.config is not None
-            assert self.finalRecog.r is not None
-            assert self.finalRecog.tbl is not None
-            assert self.finalRecog.RPLFileName is not None
-            assert self.finalRecog.PatternName is not None
-            assert self.finalRecog.Sequence is not None
             ## Json objects for all line.
             assert self.finalRecog.list is not None
-            assert self.finalRecog.PatternList is not None
+            assert self.finalRecog.patternList is not None
             assert os.path.exists("result.rpl")
             assert os.path.isfile("result.rpl")
+
+
+    # test the finalRecognition program RunNoUI method, which input a prunePctentage, and output the match rate based on it.
+    # the example below gives 100 percentage of match rate from the example test file.
+    k = Mock()
+    k.side_effect = ['1 2', 'result.rpl', 'result']
+    def testNoUI(self):
+        self.assertEqual(self.finalRecog.runNoUI(1), 100)
+        assert os.path.exists("auto.rpl")
+        assert os.path.isfile("auto.rpl")
+
+    def tearDown(self):
+        os.remove("output.json")
+        os.remove("result.txt")
+        if (os.path.exists("result.rpl")):
+            os.remove('result.rpl')
+        if (os.path.exists("auto.rpl")):
+            os.remove('auto.rpl')
 
 
 if __name__ == "__main__":
