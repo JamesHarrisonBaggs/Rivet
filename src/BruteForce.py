@@ -61,7 +61,7 @@ class BruteForce:
         self.r = self.engine.configure(self.config)
         number = 0
         with open(self.filename) as file: ## Data file need to analyize 
-            with open(os.getcwd()+self.outputfile, 'w') as self.of: ## This is the output json file that contains all pattern that matched
+            with open(self.outputfile, 'w') as self.of: ## This is the output json file that contains all pattern that matched
                 ## Variable for progress bar
                 filesize = os.path.getsize(self.filename)
                 progress = 0

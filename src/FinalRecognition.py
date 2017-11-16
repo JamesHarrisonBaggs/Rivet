@@ -70,16 +70,30 @@ class FinalRecognition:
         print("")
 
     def CustomizedPatternCreation(self):
-        self.Sequence = raw_input("What are the patterns you want to choose \n<pattern number> <pattern number> \n example: 1 2 \n")
-        # print self.Sequence
-        self.Sequence = self.Sequence.split()
+        error = True
+        while(error != False):
+            self.Sequence = raw_input("What are the patterns you want to choose \n<pattern number> <pattern number> \n example: 1 2 \n")
+            # print self.Sequence
+            self.Sequence = self.Sequence.split()
+            choosen = []
+            try:
+                for i in self.Sequence:
+                    i = int(i)
+                    if(i <= len(self.patternList) - 1 and i >= 0):
+                        choosen.append(i)
+                        error = False
+                    else:
+                        error = True
+                if(error):
+                    raise Exception("Invalid index.")
+            except ValueError:
+                print("Please input Integer value.")
+            except Exception as err:
+                print (err.args)
         self.RPLFileName = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
         # print self.RPLFileName
         self.PatternName = raw_input("Give the name to your customized patternName \n example: customer \n")
         # print self.PatternName
-        choosen = []
-        for i in self.Sequence:
-            choosen.append(int(i))
         with open(self.RPLFileName, "w") as cof:
             cof.write(self.PatternName+ " = ")
             s = ' / '
