@@ -63,9 +63,11 @@ class FinalRecognition:
            is able to match in both number count and the ratio
 
         """
+        print("Pattern matching report:")
         for i in range(len(self.patternList)):
             pat = self.patternList[i]
-            print("Pattern "+ str(i) + " matched " + str(pat.percentage) + "% of sample file")          
+            print("Pattern "+ str(i) + " matched " + str(pat.percentage) + "% of sample file")
+        print("")
 
     def CustomizedPatternCreation(self):
         self.Sequence = raw_input("What are the patterns you want to choose \n<pattern number> <pattern number> \n example: 1 2 \n")

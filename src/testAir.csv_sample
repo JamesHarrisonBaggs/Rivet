@@ -1,0 +1,11 @@
+MeasureId,MeasureName,MeasureType,StratificationLevel,StateFips,StateName,CountyFips,CountyName,ReportYear,Value,Unit,UnitName,DataOrigin,MonitorOnly
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1051,Elmore,1999,5,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1073,Jefferson,1999,39,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1079,Lawrence,1999,28,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1089,Madison,1999,31,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1097,Mobile,1999,32,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1101,Montgomery,1999,15,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1117,Shelby,1999,45,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,1,Alabama,1119,Sumter,1999,3,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,2,Alaska,2068,Denali,1999,0,No Units,No Units,Monitor Only,1
+83,Number of days with maximum 8-hour average ozone concentration over the National Ambient Air Quality Standard,Counts,State x County,4,Arizona,4003,Cochise,1999,1,No Units,No Units,Monitor Only,1
