@@ -33,8 +33,7 @@ class PatternExtraction:
                 ## After one line is finished, reset the cursor to root.
                 self.current = self.root
                 ## Progress bar
-                percentage = perenctage + round(float(i + 1) / (len(data)) * 100,1)
-                print len(data)
+                percentage = round(float(i + 1) / (len(data)) * 100,1)
                 print '\r[{0}] {1}%'.format('#'*(int(percentage)/2), percentage),
         print("")
         print("Pattern Extraction: Complete")

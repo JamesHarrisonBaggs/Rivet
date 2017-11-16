@@ -24,7 +24,7 @@ class BruteForce:
         self.tbl = None
         self.of = None
         self.list = []
-        self.outputfile = "/output.json"
+        self.outputfile = "output.json"
         self.pbar = ProgressBar()
     
     def runBrute(self):
