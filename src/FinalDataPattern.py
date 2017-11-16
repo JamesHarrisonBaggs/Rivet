@@ -11,9 +11,12 @@ import rosie
 
 
 class FinalDataPattern:
-    def __init__(self, filename):
+    def __init__(self, filename, customizedRPL, rplName):
         """Initialize the variables."""
-        self.filename = filename
+        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + filename
+        self.outputfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "customizedResult.json"
+        self.rplFile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + customizedRPL
+        self.rplName = rplName
         self.ROSIE_HOME = None
         self.Rosie = None
         self.engine = None
@@ -52,15 +55,15 @@ class FinalDataPattern:
         # for s in self.r: print s
 
         # Load the customized rpl file
-        self.r = self.engine.load_file(sys.argv[2])
+        self.r = self.engine.load_file(self.rplFile)
 
         # Use the customized pattern to matach all the file
-        self.config = json.dumps({'expression': sys.argv[3]})
+        self.config = json.dumps({'expression': self.rplName})
         self.r = self.engine.configure(self.config)
         number = 0
         self.matchRate = 0
         with open(self.filename) as file:  ## Data file need to analyize
-            with open("customizedResult.json",
+            with open(self.outputfile ,
                       'w') as self.of:  ## This is the output json file that contains all pattern that matched
                 for line in file:
                     self.r = self.engine.match(line, None)
@@ -80,5 +83,5 @@ class FinalDataPattern:
 
 
 if __name__ == "__main__":
-    brute = FinalDataPattern(sys.argv[1])
+    brute = FinalDataPattern(sys.argv[1], sys.argv[2], sys.argv[3])
     brute.runCustomizedPattern()
