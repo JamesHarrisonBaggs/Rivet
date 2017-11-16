@@ -34,7 +34,7 @@ import getopt
 ############
 # GLOBAL VARS
 bruteForceOnly = False
-numTimingRuns = 1
+numTimingRuns = 5
 dataFileName = ''
 filePatternName = ''
 ############

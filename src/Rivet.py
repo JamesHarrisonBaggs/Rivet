@@ -1,5 +1,6 @@
 import getopt
 import sys
+import os
 from sample import sample
 from BruteForce import BruteForce
 from PatternExtraction import PatternExtraction
@@ -15,10 +16,10 @@ class Rivet:
         sampler = sample(self.sampleSize, self.inputFile)
         sampler.sampling()
 
-        dataParser = BruteForce(sampler.outputfile)
+        dataParser = BruteForce( os.path.basename(os.path.normpath(sampler.outputfile)))
         dataParser.runBrute()
 
-        extractor = PatternExtraction(dataParser.outputfile)
+        extractor = PatternExtraction(os.path.basename(os.path.normpath(dataParser.outputfile)))
         extractor.runExtraction()
 
     def runUIGenerator(self):

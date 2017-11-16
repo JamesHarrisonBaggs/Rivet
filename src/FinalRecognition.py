@@ -29,7 +29,7 @@ class FinalRecognition:
 
     def __init__(self, filename):
         """Initialize the variables."""
-        self.filename = filename
+        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + filename
         self.ROSIE_HOME = None
         self.Rosie = None
         self.engine = None
@@ -42,11 +42,11 @@ class FinalRecognition:
         ## Json objects for all line.
         self.list = []
         self.patternList = []
+        self.resultfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/"+ "result.txt"
 
     def checkResult(self):
         ##reading the file from result.txt to
-        resultfile = "result.txt"
-        with open(resultfile) as f:
+        with open(self.resultfile) as f:
             content = f.read().splitlines()
             for i in content:
                 ## Split the string to get the pattern and match percentage
@@ -115,7 +115,7 @@ class FinalRecognition:
     def runNoUI(self, prunePct):
         self.checkResult()
         self.reportNumber()
-        self.RPLFileName = "auto.rpl"
+        self.RPLFileName = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "auto.rpl"
         self.PatternName = "auto"
         totalPct = 0.0
         with open(self.RPLFileName, "w") as cof:

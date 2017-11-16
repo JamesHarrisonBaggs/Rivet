@@ -15,11 +15,12 @@ from platform import node
 class PatternExtraction:
     def __init__(self, filename):
         """Save the file name given from command-line."""
-        self.filename = filename
+        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + filename
         self.root = Patterns("Root")
         self.current = self.root
         self.patternResult = list()
         self.numLines = 0
+        self.resultfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "result.txt"
 
     def runExtraction(self):
         print("Pattern Extraction: Started")
@@ -52,7 +53,7 @@ class PatternExtraction:
            sorting of the list print all patterns name to the console
         """
         self.patternResult.sort(key=lambda x: x[len(x) - 1].count)
-        f = open('result.txt', 'w')
+        f = open(self.resultfile, 'w')
 
         for i in reversed(self.patternResult):
             list = i
