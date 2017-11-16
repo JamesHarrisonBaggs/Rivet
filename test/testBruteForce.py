@@ -6,8 +6,8 @@
 
 import sys, os.path, unittest, io
 from os.path import expanduser
-home = expanduser("~") # Saves the user's home directory
-sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
+home = expanduser("~/") # Saves the user's home directory
+sys.path.append( home + os.path.abspath(os.path.join(os.getcwd(), os.pardir))+ "/src" ) # Makes the src folder accessible for testing
 from BruteForce import BruteForce
 
 
