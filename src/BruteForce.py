@@ -74,11 +74,11 @@ class BruteForce:
                     progress = progress + len(line)
                     progressPercent =  round((float)(progress) / filesize * 100, 1)
                     print '\r[{0}] {1}%'.format('#'*(int(progressPercent)/2), progressPercent),
-                
+                print("\nGenerating JSON output...")
                 json.dump(self.list, self.of, indent = 2)
+        print("\rParsing the data: Complete")
         print("")
-        print("Parsing the data: Complete")
-        print("")
+        return self.list
 
     def print_match_results(self, r, of):
         match = json.loads(r[0]) if r else False

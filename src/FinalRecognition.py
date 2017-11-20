@@ -124,13 +124,6 @@ class FinalRecognition:
             sqe = []
             for x in range(len(self.patternList)):
                 percentage = self.patternList[x].percentage
-                # count = 0
-                # percentage = 0;
-                # for j in self.list[x]:
-                #     if (j != False):
-                #            count += 1
-                #     percentage = round(float(count) / len(self.list[x]) * 100, 2)
-                    
                 if (int(prunePct) < int(percentage)):
                     totalPct += percentage
                     sqe.append("(" + str(self.patternList[x].pattern) + ")")

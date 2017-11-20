@@ -13,7 +13,7 @@ from platform import node
 
 
 class PatternExtraction:
-    def __init__(self, filename):
+    def __init__(self, filename, data):
         """Save the file name given from command-line."""
         self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + filename
         self.root = Patterns("Root")
@@ -21,21 +21,23 @@ class PatternExtraction:
         self.patternResult = list()
         self.numLines = 0
         self.resultfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "result.txt"
+        self.data = data
 
     def runExtraction(self):
-        print("Pattern Extraction: Started")
         """Runs the program."""
         ## Load the Json file and parse each object that is in the Json array.
-        with open(self.filename) as file:  ## Data file need to analyze
-            data = json.load(file)
-            self.numLines = len(data)
-            for i in range(len(data)):
-                self.parseLine(data[i])
-                ## After one line is finished, reset the cursor to root.
-                self.current = self.root
-                ## Progress bar
-                percentage = round(float(i + 1) / (len(data)) * 100,1)
-                print '\r[{0}] {1}%'.format('#'*(int(percentage)/2), percentage),
+        # with open(self.filename) as file:  ## Data file need to analyze
+        print "Loading JSON data..."
+        # data = json.load(file)
+        self.numLines = len(self.data)
+        print("\rPattern Extraction: Started")
+        for i in range(len(self.data)):
+            self.parseLine(self.data[i])
+            ## After one line is finished, reset the cursor to root.
+            self.current = self.root
+            ## Progress bar
+            percentage = round(float(i + 1) / (len(self.data)) * 100,1)
+            print '\r[{0}] {1}%'.format('#'*(int(percentage)/2), percentage),
         print("")
         print("Pattern Extraction: Complete")
         print("")

@@ -17,9 +17,9 @@ class Rivet:
         sampler.sampling()
 
         dataParser = BruteForce( os.path.basename(os.path.normpath(sampler.outputfile)))
-        dataParser.runBrute()
+        data = dataParser.runBrute()
 
-        extractor = PatternExtraction(os.path.basename(os.path.normpath(dataParser.outputfile)))
+        extractor = PatternExtraction(os.path.basename(os.path.normpath(dataParser.outputfile)), data)
         extractor.runExtraction()
 
     def runUIGenerator(self):
