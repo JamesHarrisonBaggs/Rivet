@@ -91,6 +91,7 @@ class FinalRecognition:
             except Exception as err:
                 print (err.args)
         self.RPLFileName = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
+        self.RPLFileName = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + self.RPLFileName
         # print self.RPLFileName
         self.PatternName = raw_input("Give the name to your customized patternName \n example: customer \n")
         # print self.PatternName

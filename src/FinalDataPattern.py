@@ -83,5 +83,6 @@ class FinalDataPattern:
 
 
 if __name__ == "__main__":
+    ## input as filename, customizedRPL, rplName
     brute = FinalDataPattern(sys.argv[1], sys.argv[2], sys.argv[3])
     brute.runCustomizedPattern()
