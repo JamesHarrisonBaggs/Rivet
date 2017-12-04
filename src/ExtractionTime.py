@@ -30,6 +30,9 @@ import rosie
 import subprocess
 import time
 import getopt
+import timeit
+from BruteForce import BruteForce
+from FinalDataPattern import FinalDataPattern
 
 ############
 # GLOBAL VARS
@@ -51,7 +54,7 @@ if (len(remainder) == 3):
     filePatternName = remainder[1]
     pattern = remainder[2]
 elif ((len(remainder) != 1)):
-    print("Requires 1 or 3 Arguments: DataFile(required), FilePattern.rpl(optional)")
+    print("Requires 1 or 3 Arguments: DataFile(required), FilePattern.rpl(optional), PatternName")
 else:
     bruteForceOnly = True
     print("Brute Force Only Mode.")
@@ -74,9 +77,17 @@ print
 print("*Begin Brute Force Timing Runs (These may take a long time for large files)*")
 for x in range(0, numTimingRuns):
     # Create the subprocess. Pipe the stdout into p.
-    p = subprocess.Popen("/usr/bin/time" + " -p rosie basic.matchall " + dataFileName + " >/dev/null", shell=True,
-                         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
+    start_time = timeit.default_timer()
+
+    dataParser = BruteForce( os.path.basename(os.path.normpath(dataFileName)))
+    data = dataParser.runBrute()
+
+    elapsed = timeit.default_timer() - start_time
+    print("trial #" + str(x) + ": " + str(round(elapsed,2)) + " seconds")
+    realtimes.append(elapsed)
+    totaltime = totaltime+elapsed
+'''
     # While there is output to read, read it. Append "real" times to realtimes[].
     while True:
         line = p.stdout.readline()
@@ -87,8 +98,9 @@ for x in range(0, numTimingRuns):
             totaltime += float(realtime)
         if line == '' and p.poll() != None:
             break
+'''
 
-bruteForceTime = totaltime / numTimingRuns
+avgBruteForceTime = totaltime / numTimingRuns
 
 # end brute force run timer
 ############
@@ -103,26 +115,23 @@ if (bruteForceOnly):
 realtimes = []
 totaltime = 0
 print
-print("*Begin File Pattern Enhanced Timing Runs (These may take a long time for large files)*")
+print("*Begin File Pattern Enhanced Timing Runs")
 print filePatternName
-rosieCommand = "/usr/bin/time" + " -p rosie -f " + filePatternName + " " + pattern + " " + dataFileName + " >/dev/null"
+FinalDataParser = FinalDataPattern( os.path.basename(os.path.normpath(dataFileName)), os.path.normpath(filePatternName), pattern)
+
 for x in range(0, numTimingRuns):
-    # Create the subprocess. Pipe the stdout into p.
-    p = subprocess.Popen(rosieCommand, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
     # While there is output to read, read it. Append "real" times to realtimes[].
-    while True:
-        line = p.stdout.readline()
-        if "real" in line:
-            realtime = line[5:-1]
-            print "time " + str(x) + ": " + realtime
-            realtimes.append(realtime)
-            totaltime += float(realtime)
-        if line == '' and p.poll() != None:
-            break
+    start_time = timeit.default_timer()
 
-print "average RPL time: " + str(totaltime / numTimingRuns)
-print "average brute force time: " + str(bruteForceTime)
+    FinalDataParser.runCustomizedPattern()
+
+    elapsed = timeit.default_timer() - start_time
+    print("trial #" + str(x) + ": " + str(round(elapsed,2)) + " seconds")
+    realtimes.append(elapsed)
+    totaltime = totaltime+elapsed
+
+print "average RPL time: " + str(round((totaltime / numTimingRuns),2))
+print "average brute force time: " + str(round(avgBruteForceTime,2))
 
 # end rpl force run timer
 ############
