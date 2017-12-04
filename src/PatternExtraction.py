@@ -15,12 +15,12 @@ from platform import node
 class PatternExtraction:
     def __init__(self, filename, data):
         """Save the file name given from command-line."""
-        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + filename
+        self.filename = os.path.abspath(__file__+ "/../../") + "/result/" + filename
         self.root = Patterns("Root")
         self.current = self.root
         self.patternResult = list()
         self.numLines = 0
-        self.resultfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "result.txt"
+        self.resultfile = os.path.abspath(__file__+ "/../../") + "/result/" + "result.txt"
         self.data = data
 
     def runExtraction(self):

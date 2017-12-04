@@ -29,7 +29,7 @@ class FinalRecognition:
 
     def __init__(self, filename):
         """Initialize the variables."""
-        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + filename
+        self.filename = os.path.abspath(os.path.abspath(__file__+ "/../../")) + "/resource/" + filename
         self.ROSIE_HOME = None
         self.Rosie = None
         self.engine = None
@@ -42,7 +42,7 @@ class FinalRecognition:
         ## Json objects for all line.
         self.list = []
         self.patternList = []
-        self.resultfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/"+ "result.txt"
+        self.resultfile = os.path.abspath(os.path.abspath(__file__+ "/../../")) + "/result/result.txt"
 
     def checkResult(self):
         ##reading the file from result.txt to
@@ -91,7 +91,7 @@ class FinalRecognition:
             except Exception as err:
                 print (err.args)
         self.RPLFileName = raw_input("Give the name to your customized rpl file \n example: result.rpl \n")
-        self.RPLFileName = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + self.RPLFileName
+        self.RPLFileName = os.path.abspath(os.path.abspath(__file__+ "/../../")) + "/result/" + self.RPLFileName
         # print self.RPLFileName
         self.PatternName = raw_input("Give the name to your customized patternName \n example: customer \n")
         # print self.PatternName
@@ -116,7 +116,7 @@ class FinalRecognition:
     def runNoUI(self, prunePct):
         self.checkResult()
         self.reportNumber()
-        self.RPLFileName = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "auto.rpl"
+        self.RPLFileName = os.path.abspath(os.path.abspath(__file__+ "/../../")) + "/result/" + "auto.rpl"
         self.PatternName = "auto"
         totalPct = 0.0
         with open(self.RPLFileName, "w") as cof:

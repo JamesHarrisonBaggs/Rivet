@@ -15,7 +15,7 @@ class BruteForce:
     
     def __init__(self, filename):
         """Initialize the variables."""
-        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" +filename
+        self.filename = os.path.abspath(__file__+ "/../../") + "/resource/" +filename
         self.ROSIE_HOME = None
         self.Rosie = None
         self.engine = None
@@ -24,7 +24,7 @@ class BruteForce:
         self.tbl = None
         self.of = None
         self.list = []
-        self.outputfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/output.json"
+        self.outputfile = os.path.abspath(__file__+ "/../../") + "/result/output.json"
         self.pbar = ProgressBar()
     
     def runBrute(self):

@@ -4,14 +4,13 @@
 #
 #  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
 
-import sys,os
+import sys,os,unittest
 from os.path import expanduser
 
-home = expanduser("~")  # Saves the user's home directory
-sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src')  # Makes the src folder accessible for testing
-import unittestx        
-from PatternExtraction import PatternExtraction
-from BruteForce import BruteForce
+
+sys.path.insert(0, os.path.abspath(__file__+"/.."))
+from src import PatternExtraction
+from src import BruteForce
 
 
 class PatternsTestCase(unittest.TestCase):
@@ -21,11 +20,11 @@ class PatternsTestCase(unittest.TestCase):
         if os.path.isfile("./result.txt"):
             os.remove("result.txt")
         # This must run first to create the output.json file
-        self.bruteforce = BruteForce("test/testDataStructure.csv")
-        self.bruteforce.runBrute()
+        self.bruteforce = BruteForce("testDataStructure.csv")
+        data = self.bruteforce.runBrute()
 
 
-        self.patExtract = PatternExtraction("output.json")
+        self.patExtract = PatternExtraction("output.json", data)
         self.patExtract.runExtraction()
 
     def testFileExists(self):
@@ -34,6 +33,7 @@ class PatternsTestCase(unittest.TestCase):
 
     def testRunExtraction(self):
         """Tests the runExtraction function"""
+
         assert os.path.exists("result.txt")
         assert os.path.isfile("result.txt")
 

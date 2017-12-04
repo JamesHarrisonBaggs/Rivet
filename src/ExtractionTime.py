@@ -9,7 +9,7 @@
 #     to Rosie's Data Extraction of DataFile by FilePattern.
 #  Defaults: 1 timing run
 #  Defaults: BruteForce only if no FilePattern specified
-#  Example: $>python testExtractionTime.py --timingRuns=5 UniformGeneratedData.csv FilePattern.rpl
+#  Example: $>python ExtractionTime.py --timingRuns=5 UniformGeneratedData.csv FilePattern.rpl
 
 '''
 This program's basic functionality is complete, though some potentially needed changes are:

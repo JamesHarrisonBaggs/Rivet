@@ -15,8 +15,8 @@ class sample():
             ############
             # GLOBAL VARS
             self.samplePercentage = samplePercentage
-            self.inputfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + inputfile  ## Command line argument get file name from command line
-            self.outputfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + inputfile + "_sample"
+            self.inputfile = os.path.abspath(__file__+ "/../../") + "/resource/" + inputfile  ## Command line argument get file name from command line
+            self.outputfile = os.path.abspath(__file__+ "/../../") + "/resource/" + inputfile + "_sample"
         ############
         except IndexError as err:
             print("Required arguments: Sample size, input file, output file")

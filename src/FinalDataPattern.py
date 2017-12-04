@@ -13,9 +13,9 @@ import rosie
 class FinalDataPattern:
     def __init__(self, filename, customizedRPL, rplName):
         """Initialize the variables."""
-        self.filename = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/resource/" + filename
-        self.outputfile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + "customizedResult.json"
-        self.rplFile = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + "/result/" + customizedRPL
+        self.filename = os.path.abspath(__file__+ "/../../") + "/resource/" + filename
+        self.outputfile = os.path.abspath(__file__+ "/../../") + "/result/" + "customizedResult.json"
+        self.rplFile = os.path.abspath(__file__+ "/../../") + "/result/" + customizedRPL
         self.rplName = rplName
         self.ROSIE_HOME = None
         self.Rosie = None

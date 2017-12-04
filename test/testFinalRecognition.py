@@ -5,12 +5,10 @@
 #  Authors: Yuxu Yang, Xiaoyu Chen, James Baggs
 import sys, os.path, unittest, os, json, sys
 from os.path import expanduser
-home = expanduser("~") # Saves the user's home directory
-sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
-from FinalRecognition import FinalRecognition
+from src import FinalRecognition
 import mock
-from PatternExtraction import PatternExtraction
-from BruteForce import BruteForce
+from src import PatternExtraction
+from src import BruteForce
 from mock import MagicMock
 from mock import Mock
 
@@ -18,14 +16,17 @@ from mock import Mock
 class FinalRecognitionTestCase(unittest.TestCase):
     global m
     def setUp(self):
-        self.bruteforce = BruteForce("test/testDataStructure.csv")
-        self.bruteforce.runBrute()
+        self.bruteforce = BruteForce("testDataStructure.csv")
+        print self.bruteforce.filename
+        data = self.bruteforce.runBrute()
 
-        self.patExtract = PatternExtraction("output.json")
+        self.patExtract = PatternExtraction("output.json",data)
         self.patExtract.runExtraction()
 
-        if(os.path.exists("result.rpl")):
-            os.remove('result.rpl')
+        resultPath = os.path.abspath(__file__+ "/../../")+"/result/result.rpl"
+
+        if(os.path.exists(resultPath)):
+            os.remove(resultPath)
         self.finalRecog = FinalRecognition("test/testDataStructure.csv")
 
     # there are three user input, '1 2' means user choose number 1 and number 2 for build customized rpl file,
@@ -40,8 +41,9 @@ class FinalRecognitionTestCase(unittest.TestCase):
             ## Json objects for all line.
             assert self.finalRecog.list is not None
             assert self.finalRecog.patternList is not None
-            assert os.path.exists("result.rpl")
-            assert os.path.isfile("result.rpl")
+            resultRPL = os.path.abspath(os.path.abspath(__file__ + "/../../")) + "/result/result.rpl"
+            assert os.path.exists(resultRPL)
+            assert os.path.isfile(resultRPL)
 
 
     # test the finalRecognition program RunNoUI method, which input a prunePctentage, and output the match rate based on it.
@@ -50,12 +52,13 @@ class FinalRecognitionTestCase(unittest.TestCase):
     k.side_effect = ['1 2', 'result.rpl', 'result']
     def testNoUI(self):
         self.assertEqual(self.finalRecog.runNoUI(1), 100)
-        assert os.path.exists("auto.rpl")
-        assert os.path.isfile("auto.rpl")
+        autoPath = os.path.abspath(os.path.abspath(__file__ + "/../../"))+"/result/auto.rpl"
+        assert os.path.exists(autoPath)
+        assert os.path.isfile(autoPath)
 
     def tearDown(self):
-        os.remove("output.json")
-        os.remove("result.txt")
+        os.remove(os.path.abspath(__file__+ "/../../")+"/result/output.json")
+        os.remove(os.path.abspath(__file__+ "/../../")+"/result/result.txt")
         if (os.path.exists("result.rpl")):
             os.remove('result.rpl')
         if (os.path.exists("auto.rpl")):
