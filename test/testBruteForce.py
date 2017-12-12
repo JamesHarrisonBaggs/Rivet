@@ -6,13 +6,12 @@
 
 import sys, os.path, unittest, io
 from os.path import expanduser
-home = expanduser("~/") # Saves the user's home directory
-sys.path.insert(0,
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src import BruteForce
 
 
 class BruteForceTestCase(unittest.TestCase):
+
+
 
     def setUp(self):
         """Call before every test case."""
@@ -33,15 +32,15 @@ class BruteForceTestCase(unittest.TestCase):
         {u'common.number': {u'text': u'1234', u'subs': [{u'common.int': {u'text': u'1234', u'pos': 11}}], u'pos': 11}},
         {u'basic.punctuation': {u'text': u',', u'pos': 15}}, {u'common.word': {u'text': u'Tim', u'pos': 16}}], u'pos': 1}}]
 
-        self.json_file_path = home + "/Desktop/2017/CSC492/2017FallTeam11/output.json"
-        
-        self.bruteforce = BruteForce("test/SimpleData.csv")
+        self.json_file_path = os.path.abspath(__file__ + "/../../") + "/result/output.json"
+
+        self.bruteforce = BruteForce("SimpleData.csv")
         self.bruteforce.runBrute()
         
 
     def testFileExists(self):
         """Tests that the file exist"""
-        assert self.bruteforce.filename == "test/SimpleData.csv"
+        assert self.bruteforce.filename == os.path.abspath(__file__ + "/../../") + "/resource/SimpleData.csv"
 
     def testRunBrute(self):
         """Tests the runBrute function. Most of this function calls functions from rosie.py which isn't our code."""

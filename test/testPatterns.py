@@ -6,77 +6,80 @@
 
 import sys
 from os.path import expanduser
-home = expanduser("~") # Saves the user's home directory
-sys.path.append(home + '/Desktop/2017/CSC492/2017FallTeam11/src') # Makes the src folder accessible for testing
+
 import unittest
-from Patterns import Patterns
+from src import Patterns
 
 class PatternsTestCase(unittest.TestCase):
+    
     def setUp(self):
         """Call before every test case."""
-        self.root = Patterns("Root") # Create the root node of the tree
+         # Create the root node of the tree
+        root = Patterns("Root")
+        
 
     def testAddNodesToRoot(self):
         """Test for adding two nodes to the root node."""
+        root = Patterns("Root")
+        firstNode = Patterns("1") # First node to be added
+        firstNode.count += 1
+        if root.isInList(firstNode) == -1:
+            root.addNode(firstNode)
+        assert root.isInList(firstNode) != -1 # Assert that it exists in the list
 
-        self.firstNode = Patterns("1") # First node to be added
-        self.firstNode.count += 1
-        if self.root.isInList(self.firstNode):
-            self.root.addNode(self.firstNode)
-        assert self.root.isInList(self.firstNode) != -1 # Assert that it exists in the list
-
-        self.secondNode = Patterns("2") # Second node to be added
-        self.secondNode.count += 1
-        if self.root.isInList(self.secondNode) == -1:
-            self.root.addNode(self.secondNode)
-        assert self.root.isInList(self.secondNode) != -1 # Assert that it exists in the list
+        secondNode = Patterns("2") # Second node to be added
+        secondNode.count += 1
+        if root.isInList(secondNode) == -1:
+            root.addNode(secondNode)
+        assert root.isInList(secondNode) != -1 # Assert that it exists in the list
 
         # Make sure that the root node exists
-        assert self.root.name == "Root"
-        assert self.root.count == 0
-        assert len(self.root.next) == 2
-        
+        assert  root.name == "Root"
+        assert  root.count == 0
+        assert len(root.next) == 2
+
         # Make sure that the first child node exists
-        assert self.firstNode.name == "1"
-        assert self.firstNode.count == 1
-        assert len(self.firstNode.next) == 0
+        assert  firstNode.name == "1"
+        assert  firstNode.count == 1
+        assert len( firstNode.next) == 0
 
         # Make sure that the second child node exists
-        assert self.secondNode.name == "2"
-        assert self.secondNode.count == 1
-        assert len(self.secondNode.next) == 0
-        
+        assert  secondNode.name == "2"
+        assert  secondNode.count == 1
+        assert len( secondNode.next) == 0
+      
+    
     def testAddNodesToChildren(self):
         """Test for adding a node to an existing child node."""
-        
-        self.firstNode = Patterns("1") # First node to be added
-        self.firstNode.count += 1
-        if self.root.isInList(self.firstNode):
-            self.root.addNode(self.firstNode)
-        assert self.root.isInList(self.firstNode) != -1 # Assert that it exists in the list
+        root = Patterns("Root")
+        firstNode = Patterns("1") # First node to be added
+        firstNode.count += 1
+        if root.isInList(firstNode):
+            root.addNode(firstNode)
+        assert root.isInList( firstNode) != -1 # Assert that it exists in the list
 
-        self.secondNode = Patterns("2") # Second node to be added
-        self.secondNode.count += 1
-        if self.firstNode.isInList(self.secondNode) == -1:
-            self.firstNode.addNode(self.secondNode)
-        assert self.firstNode.isInList(self.secondNode) != -1 # Assert that it exists in the list
+        secondNode = Patterns("2") # Second node to be added
+        secondNode.count += 1
+        if firstNode.isInList(secondNode) == -1:
+            firstNode.addNode(secondNode)
+        assert firstNode.isInList(secondNode) != -1 # Assert that it exists in the list
 
         # Make sure that the root node exists
-        assert self.root.name == "Root"
-        assert self.root.count == 0
-        assert len(self.root.next) == 1
-        assert self.root.next[0].name == "1"
+        assert root.name == "Root"
+        assert root.count == 0
+        assert len(root.next) == 1
+        assert root.next[0].name == "1"
         
         # Make sure that the first child node exists
-        assert self.firstNode.name == "1"
-        assert self.firstNode.count == 1
-        assert len(self.firstNode.next) == 1
-        assert self.firstNode.next[0].name == "2"
+        assert firstNode.name == "1"
+        assert firstNode.count == 1
+        assert len(firstNode.next) == 1
+        assert firstNode.next[0].name == "2"
 
         # Make sure that the second child node exists
-        assert self.secondNode.name == "2"
-        assert self.secondNode.count == 1
-        assert len(self.secondNode.next) == 0
+        assert secondNode.name == "2"
+        assert secondNode.count == 1
+        assert len(secondNode.next) == 0
 
 if __name__ == "__main__":
     unittest.main() # run all tests

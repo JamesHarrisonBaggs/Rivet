@@ -17,7 +17,7 @@ class PruneSampleAnalysis:
         for f in onlyfiles:
             currFileMatches = []
             for i in range(1, 3):
-                rivet = Rivet(0, float(i) / 30, str("./" + directory + "/" + f))
+                rivet = Rivet(0, float(i) / 30, str("/" + directory + "/" + f))
                 currFileMatches.append(rivet.getMatchPct())
             fileMatches.append(currFileMatches)
         for m in fileMatches:

@@ -16,7 +16,7 @@ class Rivet:
         sampler = sample(self.sampleSize, self.inputFile)
         sampler.sampling()
 
-        dataParser = BruteForce( os.path.basename(os.path.normpath(sampler.outputfile)))
+        dataParser = BruteForce(os.path.basename(os.path.normpath(sampler.outputfile)))
         data = dataParser.runBrute()
 
         extractor = PatternExtraction(os.path.basename(os.path.normpath(dataParser.outputfile)), data)
