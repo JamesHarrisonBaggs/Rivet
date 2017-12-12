@@ -9,7 +9,7 @@
 
 import os, json, sys
 import rosie
-from progressbar import ProgressBar
+
 
 class BruteForce:
     
@@ -25,8 +25,7 @@ class BruteForce:
         self.of = None
         self.list = []
         self.outputfile = os.path.abspath(__file__+ "/../../") + "/result/output.json"
-        self.pbar = ProgressBar()
-    
+
     def runBrute(self):
         print ("Parsing the data:...")
         """Runs the program."""

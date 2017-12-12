@@ -41,7 +41,7 @@ class RivetTestCase(unittest.TestCase):
     def tearDown(self):
         os.remove(os.path.abspath(__file__+ "/../../")+"/result/output.json")
         os.remove(os.path.abspath(__file__+ "/../../")+"/result/result.txt")
-        os.remove(os.path.abspath(__file__ + "/../../") + "/result/NewDataSet.csv_sample")
+        os.remove(os.path.abspath(__file__ + "/../../") + "/result/sample_NewDataSet.csv")
 
         if os.path.exists(autoPath):
             os.remove(autoPath)
