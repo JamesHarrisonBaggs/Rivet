@@ -26,13 +26,13 @@ Measure standard deviation / z-score of timing runs, rather than just the averag
 
 
 import os, json, sys
-import rosie
+import src.rosie
 import subprocess
 import time
 import getopt
 import timeit
-from BruteForce import BruteForce
-from FinalDataPattern import FinalDataPattern
+from src.BruteForce import BruteForce
+from src.FinalDataPattern import FinalDataPattern
 
 ############
 # GLOBAL VARS
