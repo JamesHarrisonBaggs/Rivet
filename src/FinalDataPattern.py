@@ -26,6 +26,7 @@ class FinalDataPattern:
         self.of = None
         self.list = []
         self.matchRate = 0
+        self.number = 0
 
     def runCustomizedPattern(self):
         """Runs the program."""
@@ -60,7 +61,7 @@ class FinalDataPattern:
         # Use the customized pattern to matach all the file
         self.config = json.dumps({'expression': self.rplName})
         self.r = self.engine.configure(self.config)
-        number = 0
+        self.number = 0
         self.matchRate = 0
         with open(self.filename) as file:  ## Data file need to analyize
             with open(self.outputfile ,
@@ -68,10 +69,13 @@ class FinalDataPattern:
                 for line in file:
                     self.r = self.engine.match(line, None)
                     self.print_match_results(self.r, self.of)
-                    number += 1  ## This is just keep tracking lines numbers
+                    self.number += 1  ## This is just keep tracking lines numbers
                 json.dump(self.list, self.of, indent=2)
-                print "Match Rate : " + str(round(float(self.matchRate) / float(number) * 100, 2)) + "%"
+                print "Match Rate : " + str(round(float(self.matchRate) / float(self.number) * 100, 2)) + "%"
 
+
+    def getMatchPct(self):
+        return (float(self.matchRate) / float(self.number))
 
     def print_match_results(self, r, of):
         match = json.loads(r[0]) if r else False

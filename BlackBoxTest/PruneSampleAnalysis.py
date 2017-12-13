@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 sys.path.insert(0,'..');
 import src
 from src import Rivet
+from src import FinalDataPattern
 
 class PruneSampleAnalysis:
     def __init__(self):
@@ -21,14 +22,24 @@ class PruneSampleAnalysis:
         for f in onlyfiles:
             currFileMatches = []
             for i in range(1, 3):
-                rivet = Rivet(0, float(i) / 30, str("/" + directory + "/" + f))
-                currFileMatches.append(rivet.getMatchPct())
+                print("PruneSampleAnalysis - File:" + str(f) + " Samplepct:" + str((float(i)/30.0)))
+                rivet = Rivet(0, (float(i)/30.0), str("/" + directory + "/" + f))
+                print("PruneSampleAnalysis - Generating RPL")
+                rivet.runGenerator()
+                print("PruneSampleAnalysis - Getting match percent")
+                fdp = FinalDataPattern(str("/" + directory + "/" + f), "auto.rpl", "auto")
+                fdp.runCustomizedPattern()
+                
+
+                currFileMatches.append(fdp.getMatchPct())
             fileMatches.append(currFileMatches)
-        for m in fileMatches:
-            plt.plot(range(1, 3), m)
+        handles = []
+        for entry, m in enumerate(fileMatches):
+            plt.plot(range(1, 3), m, label=str(onlyfiles[entry]))
             plt.title('match percentage vs sample percentage')
             plt.ylabel('match percentage')
             plt.xlabel('sample pct')
+        plt.legend()
         plt.show()
 
 
