@@ -1,11 +1,24 @@
 """
-    A program reads a sample datafile and outputs a sample
-    of the lines of that file
+sample.py
+
+sample.py randomply (and efficiently) selects lines from a specified input file, and outputs
+them to a file under the /resource/ directory for use with BruteForce.py. This module does 
+not require semistructured data, and can be used for other purpses outside of the Rivet system
+
+Authors: James Baggs, Xiaoyu Chen, Yuxu Yang
+
+(Program outputs sample files to /result/ directory and assumes datafiles are in /resource/)
+
+Usage:      >python sample.py <samplePercentage> <inputFile>
+Example:    >python sample.py 10 NewDataSet.csv
+
+Output:     Outputs a file to the /resource/ directory in the project. The output
+            is named "sample_<inputFilename>" which contains the same file extension
+            as the input file.
 
 """
 
 import os, json, sys
-# import pandas as pd
 import random
 
 

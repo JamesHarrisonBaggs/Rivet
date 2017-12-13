@@ -1,10 +1,24 @@
-"""
-    A program reads Json file that is output from rosie,
-    it extracts the deepest pattern from the Json strucutre
-    then create node objects for each pattern and put them into
-    a tree data structure.
+'''
+PatternExtraction.py
 
-"""
+PatternExtraction.py extracts the most deeply nested data type for each token of 
+data in the input JSON file. The most deeply nested data type is the type that provides
+the most specific information (e.g. IP_address is more specific than Word). The input
+JSON file must have been created by Rosie (or Rivet using Rosie) for proper formatting.
+The system combines token datatypes into line datatypes (patterns), which it recognizes 
+on future lines and keeps track of how many times a line pattern has occured. The most
+frequent line patterns are stored earlier in the Patterns tree, and are output to the console
+first.
+
+Authors: James Baggs, Xiaoyu Chen, Yuxu Yang
+
+(Program outputs RPL files to /result/ directory and assumes datafiles are in /resource/)
+
+Output:     Outputs a .txt file to the /result/ directory in the project. The output
+            is named result.txt and contains a list of line patterns that are not 
+            yet processed into .rpl format (FinalRecognition.py does this)
+
+'''
 
 import os, json, sys
 import rosie

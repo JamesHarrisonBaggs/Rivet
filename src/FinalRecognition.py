@@ -1,11 +1,19 @@
-#  BruteForce.py
-#
-#  A program that uses Rosie's "match all" functionality
-#  to match parsed data against Rosie's library of patterns.
-#
-#  Code copied and modified from rtest.py.
-#
-#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
+'''
+FinalRecognition.py
+
+FinalRecognition.py is the final step in the Rivet system which uses the
+extracted patterns from PatternExtraction.py to generate the final RPL file.
+run() and runNoUI() are called depending on whether or not a prune percentage
+was specified in Rivet, where run() allows the user to specify patterns and
+name the RPL file through the command line user interface.
+
+Authors: James Baggs, Xiaoyu Chen, Yuxu Yang
+
+Output:     Outputs a .rpl file to the /result/ directory in the project. The output
+            is named auto.rpl when a prune percentage is specified, and is manually
+            named by the user in UI mode.
+
+'''
 
 import os, json, sys
 import rosie
