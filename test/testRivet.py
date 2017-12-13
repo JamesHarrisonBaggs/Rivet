@@ -24,7 +24,7 @@ class RivetTestCase(unittest.TestCase):
 
     def test_rivet_with_pruneSize(self):
         self.rivet.runGenerator()
-        assert self.rivet.getMatchPct() == 100.0
+        assert self.rivet.getMatchPct() >= 90.0
         assert os.path.exists(autoPath)
         assert os.path.isfile(autoPath)
 

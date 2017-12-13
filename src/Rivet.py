@@ -1,3 +1,31 @@
+'''
+Rivet.py
+
+Rivet.py is the Rosie Pattern Language (RPL) file-pattern generation system. It
+analyzes a semistructured data file in a format such as CSV, HTML, or TXT and
+produces a .rpl file which can be used with Rosie (or FinalDataPattern.py) to
+extract data from the original input file much faster than would be capable by
+Rosie's default Brute Force extraction. It has two main operating modes: Automatic
+and User Interface. If a pattern prune percentage is specified, the system will 
+Automatically extract data into its patterns, otherwise a User Interface will
+be displayed to allow users to select which patterns they would like save in .rpl
+
+Authors: James Baggs, Xiaoyu Chen, Yuxu Yang
+
+(Program outputs RPL files to /result/ directory and assumes datafiles are in /resource/)
+Usage:      >python Rivet.py <options> <datafile>
+Examples:   >python Rivet.py NewDataSet.csv
+                Uses 100% of datafile, User Interface On
+            >python Rivet.py -s 10 NewDataSet.csv
+                Samples 10% of datafile, User Interface On
+            >python Rivet.py -s 10 -p 1 NewDataSet.csv
+                Samples 10% of data, automatically prunes patterns that mach less
+                than 1% of data. Saves resulting pattern "auto" to /result/auto.rpl
+Output:     Outputs a .rpl file to the /result/ directory in the project. The output
+            is named auto.rpl when a prune percentage is specified, and is manually
+            named by the user in UI mode.
+
+'''
 import getopt
 import sys
 import os
