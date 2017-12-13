@@ -31,8 +31,8 @@ import subprocess
 import time
 import getopt
 import timeit
-from src.BruteForce import BruteForce
-from src.FinalDataPattern import FinalDataPattern
+from src import BruteForce
+from src import FinalDataPattern
 
 ############
 # GLOBAL VARS

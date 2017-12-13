@@ -3,7 +3,7 @@ import sys
 from os import listdir
 from os.path import isfile, join
 from matplotlib import pyplot as plt
-from src.Rivet import Rivet
+from src import Rivet
 
 
 class PruneSampleAnalysis:
