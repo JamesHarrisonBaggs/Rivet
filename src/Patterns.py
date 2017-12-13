@@ -6,6 +6,8 @@ class Patterns:
         of a pattern that appears in a location of the tree, and
         a list of all children nodes which are patterns that appear 
         after this pattern.
+
+        Authors: Xiaoyu Chen, Yuxu Yang
     """
     
     
