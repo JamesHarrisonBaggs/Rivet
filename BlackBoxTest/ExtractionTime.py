@@ -26,11 +26,13 @@ Measure standard deviation / z-score of timing runs, rather than just the averag
 
 
 import os, json, sys
-import src.rosie
 import subprocess
 import time
 import getopt
 import timeit
+import os.path
+sys.path.insert(0,'..');
+import src
 from src import BruteForce
 from src import FinalDataPattern
 
@@ -49,6 +51,7 @@ options, remainder = getopt.getopt(sys.argv[1:], 't:', ['timingRuns='])
 for opt, arg in options:
     if opt in ('-t', '--timingRuns'):
         numTimingRuns = int(arg)
+        print("Running " + str(numTimingRuns) + " data extractions by both BruteForce and RPL")
 if (len(remainder) == 3):
     dataFileName = remainder[0]
     filePatternName = remainder[1]
