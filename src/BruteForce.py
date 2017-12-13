@@ -1,11 +1,21 @@
 #  BruteForce.py
 # 
-#  A program that uses Rosie's "match all" functionality
+#  A program that uses Rosie's "match all" Brute Force functionality
 #  to match parsed data against Rosie's library of patterns.
+#  Takes file as input by command line argument, and prints the parsed
+#  JSON output from rosie to a file.
 # 
-#  Code copied and modified from rtest.py.
+#  Code modified from rtest.py.
 #
-#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
+#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang
+#  
+#  Usage: python BruteForce.py <filename>
+#  Example Usage: >python BruteForce.py NewDataSet.csv
+#       (Where user is currently in /src folder, and NewDataSet.csv is located in /resources)
+#
+#  Output: /result/output.json 
+#
+
 
 import os, json, sys
 import rosie
@@ -85,5 +95,9 @@ class BruteForce:
         leftover = json.loads(r[1])
 
 if __name__ == "__main__":
+    if(sys.argv[1].upper() == "HELP"):
+        print("Usage: >python BruteForce.py <filename>")
+        print("Try using >python BruteForce.py NewDataSet.csv")
+        exit(0)
     Brute = BruteForce(sys.argv[1])
     Brute.runBrute()
