@@ -2,9 +2,13 @@ import getopt
 import sys
 from os import listdir
 from os.path import isfile, join
+import os.path
 from matplotlib import pyplot as plt
-from src import Rivet
 
+# sys.path.append('/home/james/2017FallTeam11/src/');
+sys.path.insert(0,'..');
+import src
+from src import Rivet
 
 class PruneSampleAnalysis:
     def __init__(self):
