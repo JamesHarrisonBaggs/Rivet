@@ -2,7 +2,7 @@
 #
 #  Unit tests for BruteForce.py
 #
-#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang, Colleen Britt
+#  Authors: Xiaoyu Chen, James Baggs, Yuxu Yang
 
 import sys, os.path, unittest, io
 from os.path import expanduser
@@ -44,7 +44,6 @@ class BruteForceTestCase(unittest.TestCase):
 
     def testRunBrute(self):
         """Tests the runBrute function. Most of this function calls functions from rosie.py which isn't our code."""
-        assert self.bruteforce.ROSIE_HOME == self.home + "/Desktop/rosie-pattern-language"
         assert self.bruteforce.config == """{"expression": "basic.matchall"}"""
 
         # Can't explicitly test these because they are different every time they are generated
